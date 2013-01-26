@@ -55,6 +55,34 @@ class Tile(Agent):
     def hit(self,agent,laser):
         if hasattr(self,"vines"):
             self.erase()
+            x = self.pos[0]//32
+            y = self.pos[1]//32-1
+            to_erase = []
+            while y>-1:
+                t = self.layer.tiles[y][x]
+                col = self.layer.map.collisions[y][x]
+                if hasattr(t,"vines"):
+                    to_erase.append(t)
+                elif col.col:
+                    to_erase = []
+                    break
+                else:
+                    break
+                y-=1
+            to_erase2 = []
+            y = self.pos[1]//32+1
+            while y<len(self.layer.tiles):
+                t = self.layer.tiles[y][x]
+                col = self.layer.map.collisions[y][x]
+                if hasattr(t,"vines"):
+                    to_erase2.append(t)
+                elif not col.col:
+                    to_erase.extend(to_erase2)
+                    break
+                else:
+                    break
+                y+=1
+            [x.erase() for x in to_erase]
     def erase(self):
         if self.layer:
             self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()
