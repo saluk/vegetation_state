@@ -1,0 +1,7 @@
+syntax: glob
+*.pyc
+lastlog.txt
+loghistory.txt
+screens/*
+build/*
+erikerrand_*.zip

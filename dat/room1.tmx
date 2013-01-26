@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="collisions.tsx"/>
+ <tileset firstgid="1025" source="tiles.tsx"/>
+ <layer name="floor1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjZmFgYCGAWYGYmUh1ykDMRACrkqCOmQh1tLCXmuqIxa5UME+Vyu4jxzyQOhcc2JVM84h1qzMeu7G5gZ7xO5TMQw8zJjRxdDYl8UEsBsUbALJpF1c=
+  </data>
+ </layer>
+ <layer name="COLLISIONS" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIyJgRGmjpiATXMY0JjD4R5xKYPUswjBlAzjZLiPmLBUDKPmDgjZD+1yxUQBgDGnwDJ
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="20" height="15">
+  <object name="playerspawn" x="150" y="185" width="32" height="32"/>
+ </objectgroup>
+</map>
