@@ -266,7 +266,7 @@ class Player(Agent):
         elif self.jumptime==0:
             self.jumptime = -1
         if self.jumptime>0:
-            self.vector[1]=-2
+            self.vector[1]=-4
             self.jumptime-=1
             if self.jumptime==0:
                 self.jumptime = -1

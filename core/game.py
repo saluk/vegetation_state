@@ -107,7 +107,7 @@ class GameWorld(World):
         song = songs.get(self.map.name,songs["default"])
         if song:
             song = "music/"+song+".mp3"
-        print song
+        #print song
         self.engine.play_music(song)
     def get_objects(self,agent):
         return [o for o in self.objects if (not hasattr(o,"mapname") or o.mapname==agent.mapname)]

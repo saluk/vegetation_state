@@ -414,7 +414,7 @@ class TileMap(Agent):
         return [[n.x*32+16,n.y*32+16] for n in search]
     def collide(self,agent,flags=None):
         r = agent.rect()
-        for point in ([r.left,r.top],[r.right,r.top],[r.left,r.bottom],[r.right,r.bottom]):
+        for point in ([r.left,r.top],[r.right,r.top],[r.left,r.bottom],[r.right,r.bottom],[r.right,r.center[1]],[r.left,r.center[1]],[r.center[0],r.top],[r.center[0],r.bottom]):
             col = self.collide_point(point,flags)
             if col:
                 return col
