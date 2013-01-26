@@ -150,7 +150,7 @@ class Player(Agent):
         if self.vector[0]:
             self.pos[0]+=self.vector[0]
             col1 = self.world.collide(self,"move")
-            if col1 and not col0:
+            if col1 and hasattr(col1,"col") and not col0:
                 self.pos[0]-=self.vector[0]
             else:
                 self.facing = [self.vector[0],0]
@@ -158,7 +158,7 @@ class Player(Agent):
         if self.vector[1]:
             self.pos[1]+=self.vector[1]
             col2 = self.world.collide(self,"move")
-            if col2 and not col0:
+            if col2 and hasattr(col2,"col") and not col0:
                 self.pos[1]-=self.vector[1]
             else:
                 self.moved = True
