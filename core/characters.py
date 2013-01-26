@@ -333,5 +333,7 @@ class Player(Agent):
             ob = self.world.collide_point(self,l.end,"move")
             #Maybe break here, maybe keep going
             if ob:
+                if hasattr(ob,"hit"):
+                    ob.hit(self,l)
                 break
         self.world.add(l)

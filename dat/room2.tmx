@@ -7,6 +7,11 @@
    eJxjYmFgYBrFo3iAMAcQc1LRPDYg1hxk5rGhYZh5LGRiNiSzPYDYcxDEIy7sDMQuVMKuQAwA+24NeA==
   </data>
  </layer>
+ <layer name="tileobs1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9AZcLKPmjZo3CsgBAOWsAGM=
+  </data>
+ </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2D4AKZBaB4TGgYBRizipGBGKB7sgBI/YsMAQEQAVg==

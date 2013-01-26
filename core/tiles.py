@@ -15,6 +15,7 @@ class Tile(Agent):
     def init(self):
         self.col = None    #full,top,bottom,left,right
         self.index = -1
+        self.layer = None
     def serialized(self):
         return {"pos":self.pos,"col":self.col,"index":self.index}
     @staticmethod
@@ -51,6 +52,14 @@ class Tile(Agent):
             top+=16
         if point[0]>=left and point[0]<=right and point[1]>=top and point[1]<=bottom:
             return self
+    def hit(self,agent,laser):
+        if hasattr(self,"vines"):
+            self.erase()
+    def erase(self):
+        if self.layer:
+            self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()
+            t.layer = self.layer
+            self.layer.cache_surface = None
             
 class Frober(Agent):
     def init(self):
@@ -285,6 +294,7 @@ class TileMap(Agent):
         self.loadtmx(map)
     def read_tile_layer(self,layer):
         maplayer = TileLayer()
+        maplayer.map = self
         maplayer.layer = len(self.map)
         x=y=0
         row = []
@@ -295,6 +305,7 @@ class TileMap(Agent):
                 row.append(nulltile)
             else:
                 tile = Tile()
+                tile.layer = maplayer
                 tile.index = ti
                 tile.surface = self.tileset_list[tile.index]
                 tile.pos = [x*32,y*32]
@@ -424,6 +435,10 @@ class TileMap(Agent):
                 return Tile()
             col = 0
             if flags=="move":
+                for layer in reversed(self.map):
+                    tile = layer.tiles[y][x].collide_point(point,flags)
+                    if tile:
+                        return tile
                 tile = self.collisions[y][x].collide_point(point,flags)
                 if tile:
                     return tile
