@@ -185,6 +185,8 @@ class GameWorld(World):
                 self.player.menu.visible = False
             player_move = False
         if player_move:
+            if controller.shoot:
+                self.player.shoot()
             if controller.left:
                 self.player.left()
                 self.player.assign_ai(active=False)

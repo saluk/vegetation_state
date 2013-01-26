@@ -8,6 +8,21 @@ from ui import Textbox,PopupText
 from aicontroller import AIController
 import interactions
 
+class Laser(Agent):
+    def init(self):
+        self.end = [0,0]
+        self.timeout = 30
+    def update(self,*args):
+        self.timeout-=1
+        if self.timeout<=0:
+            self.kill = 1
+            self.parent.laser = None
+    def draw(self,engine,offset):
+        for i in range(3):
+            p1 = [self.pos[0]-offset[0],self.pos[1]-offset[1]+random.randint(-2,2)-5]
+            p2 = [self.end[0]-offset[0],self.end[1]-offset[1]+random.randint(-5,5)]
+            pygame.draw.line(engine.surface,[0,random.randint(40,140),0],p1,p2,2)
+
 class Player(Agent):
     def init(self):
         self.hotspot = [16,38]
@@ -19,6 +34,7 @@ class Player(Agent):
         self.animating = False
         self.walk_speed = 3.5
         self.vector = [0,0]
+        self.laser = None
         
         self.jumptime = 0
         
@@ -233,17 +249,15 @@ class Player(Agent):
     def forward(self):
         self.vector[:] = self.facing[:]
     def left(self):
+        if self.laser:
+            return
         self.facing = [-1,0]
         self.vector[0] = -1
     def right(self):
+        if self.laser:
+            return
         self.facing = [1,0]
         self.vector[0] = 1
-    def up(self):
-        #self.facing = [0,-1]
-        self.vector[1] = -1
-    def down(self):
-        #self.facing = [0,1]
-        self.vector[1] = 1
     def set_anim(self,anim):
         self.anim = anim
         self.frame = 0
@@ -306,3 +320,18 @@ class Player(Agent):
     def rect(self):
         left,top,right,bottom = self.pos[0]-16+1,self.pos[1]-42+1,self.pos[0]+16-1,self.pos[1]+16-1
         return pygame.Rect([[left,top],[right-left,bottom-top]])
+    def shoot(self):
+        if self.laser:
+            return
+        l = Laser()
+        l.parent = self
+        self.laser = l
+        l.pos = [int(self.pos[0]+3*self.facing[0]),int(self.pos[1])]
+        l.end = [int(l.pos[0]//32*32+16),int(l.pos[1]//32*32+16)]
+        while 1:
+            l.end[0]+=int(self.facing[0]*32)
+            ob = self.world.collide_point(self,l.end,"move")
+            #Maybe break here, maybe keep going
+            if ob:
+                break
+        self.world.add(l)

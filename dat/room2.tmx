@@ -9,7 +9,7 @@
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2D4AMZBaB4TGoaZiy5OCmakkttoDSjxIzYMADzUAFQ=
+   eJxjYBgFo2D4AKZBaB4TGgYBRizipGBGKB7sgBI/YsMAQEQAVg==
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">

@@ -31,6 +31,7 @@ class Controller:
         self.menu = 0
         self.restart = 0
         self.quit = 0
+        self.shoot = 0
     def reset_all(self):
         self.reset_triggers()
         self.left = 0
@@ -115,7 +116,7 @@ class Controller:
             if e.key == pygame.K_z:
                 self.jump = 1
             if e.key == pygame.K_x:
-                self.menu = 1
+                self.shoot = 1
             if e.key == pygame.K_r:
                 self.restart = 1
             if e.key == pygame.K_F6:
@@ -132,7 +133,7 @@ class Controller:
             elif e.key == pygame.K_DOWN:
                 self.down = 0
             elif e.key == pygame.K_x:
-                self.menu = 0
+                self.shoot = 0
             if e.key == pygame.K_r:
                 self.restart = 0
             if e.key == pygame.K_F6:
