@@ -19,7 +19,7 @@ class GameWorld(World):
         self.objects = []
         
         self.maps = {}
-        for map in ["room1","room2"]:
+        for map in ["room1","room2","room3","hubupgate","hubdowngate","hubleftgate","hubrightgate","hub"]:
             self.maps[map] = TileMap()
             self.maps[map].name = map
             self.maps[map].mapname = map
@@ -89,10 +89,12 @@ class GameWorld(World):
         self.add(p)
         return p
     def change_map(self,character,map,target):
-        #~ if map not in self.maps:
-            #~ return
-        #~ if target not in self.maps[map].destinations:
-            #~ return
+        if map not in self.maps:
+            print "NO MAP"
+            return
+        if target not in self.maps[map].destinations:
+            print "NO 'DESTINATION'"
+            return
         character.mapname = map
         character.map = self.maps[map]
         character.following_points = []

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="collisions.tsx"/>
+ <tileset firstgid="1025" source="tiles.tsx"/>
+ <layer name="floor1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjY2FgYINiJiSMzicW4zKLHPPYCJhHqpnY9LGRaR4hfaSaSUg9qe6kt3mkmjmU1FHDTHqZhy6ODRMyazCbBwAqTAjl
+  </data>
+ </layer>
+ <layer name="COLLISIONS" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYIJiZIDOJxbgMosc85gY8JtHqpnY9DHhECfFLGz6SDWTkHpS3Ulv80g1cyipo4aZ9DIPXRwbJmTWYDYPANTnAO8=
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="20" height="15">
+  <object x="97" y="-12" width="95" height="23">
+   <properties>
+    <property name="warp" value="room3_B"/>
+   </properties>
+  </object>
+  <object name="A" x="135" y="67" width="13" height="13">
+   <properties>
+    <property name="destination" value="A"/>
+   </properties>
+  </object>
+  <object x="66" y="467" width="56" height="23">
+   <properties>
+    <property name="warp" value="hub_TL"/>
+   </properties>
+  </object>
+  <object name="L" x="91" y="443" width="13" height="13">
+   <properties>
+    <property name="destination" value="L"/>
+   </properties>
+  </object>
+  <object name="R" x="483" y="446" width="13" height="13">
+   <properties>
+    <property name="destination" value="R"/>
+   </properties>
+  </object>
+  <object name="T" x="584" y="19" width="13" height="13">
+   <properties>
+    <property name="destination" value="T"/>
+   </properties>
+  </object>
+  <object x="419" y="471" width="116" height="28">
+   <properties>
+    <property name="warp" value="hub_TR"/>
+   </properties>
+  </object>
+  <object x="230" y="-22" width="405" height="32">
+   <properties>
+    <property name="warp" value="room3_R1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

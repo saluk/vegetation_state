@@ -4,33 +4,23 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmFgYBrFo3iAMAcQc1LRPDYg1hxk5rGhYZh5LGRiNiSzPYDYcxDEIy7sDMQuVMKuQAwA+24NeA==
+   eJxjY2FgYBvEmGmE4YEIR2L1EmM2MXrJ9Ssueyi1g1i9hPxJih3o9mAzG19ckeNfdPsImUWseeSkK2LUYTMPAM1KCcE=
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2D4AKZBaB4TGgYBRizipGBGKB7sgBI/YsMAQEQAVg==
+   eJxjYKAuYKIyHmlgNPxGwSjADQAk3wBR
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object x="-20" y="384" width="27" height="68">
+  <object x="-15" y="67" width="24" height="89">
    <properties>
-    <property name="warp" value="room1_A"/>
+    <property name="warp" value="hub_R"/>
    </properties>
   </object>
-  <object name="A" x="35" y="426" width="32" height="32">
+  <object name="L" x="52" y="128" width="24" height="20">
    <properties>
-    <property name="destination" value="A"/>
-   </properties>
-  </object>
-  <object x="624" y="369" width="27" height="68">
-   <properties>
-    <property name="warp" value="room3_A"/>
-   </properties>
-  </object>
-  <object name="B" x="594" y="423" width="32" height="32">
-   <properties>
-    <property name="destination" value="B"/>
+    <property name="destination" value="L"/>
    </properties>
   </object>
  </objectgroup>

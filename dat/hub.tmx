@@ -4,23 +4,63 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmFgYBrFo3iAMAcQc1LRPDYg1hwi5rFQiFmB2AOIPQdBPOLCzkDsQiXsCsQA7uINbw==
+   eJy10jEOACAIA0BCDP9/Mg5ODLSADJ3UE0Q7InajL0ZEQ7I9jBfN6nqsJwvymPPI69Qw8dA9yGNmy3jVWVcdVPOPd8u8qd/9s4zXzYa12a8DOKsI9Q==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2D4AKYhYh4jlE0pHuyAGn5ExgA6gABS
+   eJy10sEKACAIA9Dh/390dAok3GY28FS9JAsAgZMQKqfao3jZdNedME85z7xODy8eu4d5ymwVz52167CeJ96t8l797p9VvG79sG7mRLazAFweAPc=
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object x="-20" y="384" width="27" height="68">
+  <object name="TL" x="92" y="56" width="12" height="12">
    <properties>
-    <property name="warp" value="room1_A"/>
+    <property name="destination" value="TL"/>
    </properties>
   </object>
-  <object name="A" x="35" y="426" width="32" height="32">
+  <object name="TR" x="505" y="46" width="26" height="29">
    <properties>
-    <property name="destination" value="A"/>
+    <property name="destination" value="TR"/>
+   </properties>
+  </object>
+  <object name="L" x="30" y="322" width="12" height="12">
+   <properties>
+    <property name="destination" value="L"/>
+   </properties>
+  </object>
+  <object name="B" x="476" y="355" width="12" height="12">
+   <properties>
+    <property name="destination" value="B"/>
+   </properties>
+  </object>
+  <object name="R" x="610" y="125" width="12" height="12">
+   <properties>
+    <property name="destination" value="R"/>
+   </properties>
+  </object>
+  <object x="62" y="-12" width="65" height="23">
+   <properties>
+    <property name="warp" value="hubupgate_L"/>
+   </properties>
+  </object>
+  <object x="417" y="-15" width="124" height="22">
+   <properties>
+    <property name="warp" value="hubupgate_R"/>
+   </properties>
+  </object>
+  <object x="631" y="66" width="16" height="91">
+   <properties>
+    <property name="warp" value="hubrightgate_L"/>
+   </properties>
+  </object>
+  <object x="480" y="474" width="123" height="16">
+   <properties>
+    <property name="warp" value="hubdowngate_T"/>
+   </properties>
+  </object>
+  <object x="-26" y="258" width="33" height="91">
+   <properties>
+    <property name="warp" value="hubleftgate_R"/>
    </properties>
   </object>
  </objectgroup>
