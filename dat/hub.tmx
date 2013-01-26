@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="collisions.tsx"/>
+ <tileset firstgid="1025" source="tiles.tsx"/>
+ <layer name="floor1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYmFgYBrFo3iAMAcQc1LRPDYg1hwi5rFQiFmB2AOIPQdBPOLCzkDsQiXsCsQA7uINbw==
+  </data>
+ </layer>
+ <layer name="COLLISIONS" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2D4AKYhYh4jlE0pHuyAGn5ExgA6gABS
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="20" height="15">
+  <object x="-20" y="384" width="27" height="68">
+   <properties>
+    <property name="warp" value="room1_A"/>
+   </properties>
+  </object>
+  <object name="A" x="35" y="426" width="32" height="32">
+   <properties>
+    <property name="destination" value="A"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
