@@ -193,12 +193,6 @@ class GameWorld(World):
             if controller.right:
                 self.player.right()
                 self.player.assign_ai(active=False)
-            if controller.up:
-                self.player.up()
-                self.player.assign_ai(active=False)
-            if controller.down:
-                self.player.down()
-                self.player.assign_ai(active=False)
             if controller.jump:
                 self.player.jump()
             else:

@@ -4,17 +4,22 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmFgYBrFODEbEh5otwxHzAHEnFSOL81BZh4bGoaZx0ImRk6LHkDsOQjiERd2BmIXKmFXIAYAJg0NhA==
+   eJytktEKgDAIRccYth+J6Dsqqv//odnDQESXOB8Og4scvLJcUsoCQKCZNDsCHFhd1kzqYdnhL+N38XaLvBFlDfIsSDX4rH9iC/Jovt3hoNzIQ/rO+ni/7isMUF5prru/Pd/J/SKoSn4g5wBgL88pF9IASA4Pfg==
+  </data>
+ </layer>
+ <layer name="wall1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhAQAEsAAB
   </data>
  </layer>
  <layer name="tileobs1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9AZcLKPmjZo3CsgBAOWsAGM=
+   eJxjYBgF9AZcLKPmDVXzuFkgGJlPiXm0BDws2GlKAMy/2PxNDwAAXLcA3g==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF+AATEh4Fgx9QO56oYR4TA2Y6YsQiTgpmhOLBDijxIzYMAFWMAFw=
+   eJxjYmBgYBrFRGEGKpmBDqhlDjnmkgLoZRY5gFL9+MykljnI5jFiEScFM0LxYAfUzoMA53EBXA==
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">

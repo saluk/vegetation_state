@@ -10,6 +10,19 @@ try:
     import android
 except:
     android = None
+    
+class FallingTiles(Agent):
+    def init(self):
+        self.angm = random.randint(-3,3)
+        self.ang = 0
+        self.a = [random.randint(-1,1),1]
+    def update(self,*args):
+        self.surface = pygame.transform.rotate(self.graphic,self.ang)
+        self.ang+=self.a[0]
+        self.pos[0]+=self.a[0]
+        self.pos[1]+=self.a[1]
+        if self.pos[0]<0 or self.pos[0]>640 or self.pos[1]<0 or self.pos[1]>480:
+            self.kill = 1
 
 class Tile(Agent):
     def init(self):
@@ -54,7 +67,6 @@ class Tile(Agent):
             return self
     def hit(self,agent,laser):
         if hasattr(self,"vines"):
-            self.erase()
             x = self.pos[0]//32
             y = self.pos[1]//32-1
             to_erase = []
@@ -82,7 +94,21 @@ class Tile(Agent):
                 else:
                     break
                 y+=1
-            [x.erase() for x in to_erase]
+            for t in [self]+to_erase:
+                falling = FallingTiles()
+                falling.pos = t.pos
+                surf = pygame.Surface([32,32]).convert_alpha()
+                surf.fill([0,0,0,0])
+                s = self.layer.map.world.engine.surface
+                self.layer.map.world.engine.surface = surf
+                t.pos = [0,0]
+                t.draw(self.layer.map.world.engine,[0,0])
+                t.pos = falling.pos
+                self.layer.map.world.engine.surface = s
+                falling.graphic = surf
+                falling.surface = falling.graphic
+                self.layer.map.world.add(falling)
+                t.erase()
     def erase(self):
         if self.layer:
             self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()

@@ -37,7 +37,7 @@ class Agent(object):
         self.visible = True
         self.gfd = {}
         self.gft = {}
-        self.layer = 2
+        self.layer = 1
         self.kill = 0
         self.init()
     def get_sprites(self):

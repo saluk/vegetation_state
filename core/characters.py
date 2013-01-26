@@ -32,7 +32,8 @@ class Player(Agent):
         self.frame = 0
         self.anim = None
         self.animating = False
-        self.walk_speed = 3.5
+        self.horiz_accel = 0.2
+        self.a = [0,0]
         self.vector = [0,0]
         self.laser = None
         
@@ -147,18 +148,18 @@ class Player(Agent):
         col0 = self.world.collide(self)
         
         if self.vector[0]:
-            self.pos[0]+=self.vector[0]*self.walk_speed
+            self.pos[0]+=self.vector[0]
             col1 = self.world.collide(self,"move")
             if col1 and not col0:
-                self.pos[0]-=self.vector[0]*self.walk_speed
+                self.pos[0]-=self.vector[0]
             else:
                 self.facing = [self.vector[0],0]
                 self.moved = True
         if self.vector[1]:
-            self.pos[1]+=self.vector[1]*self.walk_speed
+            self.pos[1]+=self.vector[1]
             col2 = self.world.collide(self,"move")
             if col2 and not col0:
-                self.pos[1]-=self.vector[1]*self.walk_speed
+                self.pos[1]-=self.vector[1]
             else:
                 self.moved = True
         
@@ -245,19 +246,17 @@ class Player(Agent):
     def idle(self):
         self.animating = False
         self.particles.active = False
-        self.vector = [0,0]
-    def forward(self):
-        self.vector[:] = self.facing[:]
+        self.a = [0,0]
     def left(self):
         if self.laser:
             return
         self.facing = [-1,0]
-        self.vector[0] = -1
+        self.a[0] = -self.horiz_accel
     def right(self):
         if self.laser:
             return
         self.facing = [1,0]
-        self.vector[0] = 1
+        self.a[0] = self.horiz_accel
     def set_anim(self,anim):
         self.anim = anim
         self.frame = 0
@@ -280,15 +279,43 @@ class Player(Agent):
         elif self.jumptime==0:
             self.jumptime = -1
         if self.jumptime>0:
-            self.vector[1]=-4
+            self.vector[1]=-6
             self.jumptime-=1
             if self.jumptime==0:
                 self.jumptime = -1
     def reset_jump(self):
         self.jumptime = 0
+    def physics(self):
+        mx = 5
+        my = 5
+        damp = 0.5
+        if self.a[0]!=0:
+            self.vector[0]+=self.a[0]
+            if self.vector[0]<-mx:
+                self.vector[0]=-mx
+            if self.vector[0]>mx:
+                self.vector[0]=mx
+        else:
+            if self.vector[0]>0:
+                self.vector[0]-=damp
+                if self.vector[0]<0:
+                    self.vector[0]=0
+            if self.vector[0]<0:
+                self.vector[0]+=damp
+                if self.vector[0]>0:
+                    self.vector[0]=0
+        if self.a[1]!=0:
+            self.vector[1]+=self.a[1]
+            if self.vector[1]<-my:
+                self.vector[1]=-my
+            if self.vector[1]>my:
+                self.vector[1]=my
     def update(self,world):
         if self.jumptime <= 0:
-            self.vector[1]=2
+            self.a[1]=1
+            
+        self.physics()
+            
         if self.vector[0] or self.vector[1]:
             self.walk()
             
