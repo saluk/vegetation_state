@@ -4,26 +4,24 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjZmFgYCGAWYGYmUh1ykDMRACrkqCOmQh1tLCXmuqIxa5UME+Vyu4jxzyQOhcc2JVM84h1qzMeu7G5gZ7xO9jNY0IyDz3MmNDE0dm4MDHxQSwGxRsAkIEXEQ==
+   eJxjYmFgYBrFo3iAMAcQc1LRPDYg1hwi5rFQiFmB2AOIPQdBPOLCzkDsQiXsCsQA7uINbw==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYKIyJgRGmjpiATXMY0JjD4R5xKYPUswjBlAzjZLiPmLBYDcPZiay2fjijBj7qV22AADErwDF
+   eJxjYBgFo2D4AKYhYh4jlE0pHuyAGn5ExgA6gABS
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="playerspawn" x="63" y="251" width="32" height="32"/>
-  <object x="628" y="384" width="32" height="60">
+  <object x="-20" y="384" width="27" height="68">
    <properties>
-    <property name="warp" value="room2_A"/>
+    <property name="warp" value="room1_A"/>
    </properties>
   </object>
-  <object name="A" x="608" y="426">
+  <object name="A" x="35" y="426" width="32" height="32">
    <properties>
     <property name="destination" value="A"/>
    </properties>
-   <polyline points="0,0 -11,3"/>
   </object>
  </objectgroup>
 </map>

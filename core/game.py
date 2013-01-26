@@ -19,7 +19,7 @@ class GameWorld(World):
         self.objects = []
         
         self.maps = {}
-        for map in ["room1"]:
+        for map in ["room1","room2"]:
             self.maps[map] = TileMap()
             self.maps[map].name = map
             self.maps[map].mapname = map
@@ -89,6 +89,10 @@ class GameWorld(World):
         self.add(p)
         return p
     def change_map(self,character,map,target):
+        #~ if map not in self.maps:
+            #~ return
+        #~ if target not in self.maps[map].destinations:
+            #~ return
         character.mapname = map
         character.map = self.maps[map]
         character.following_points = []
@@ -191,10 +195,10 @@ class GameWorld(World):
             if controller.down:
                 self.player.down()
                 self.player.assign_ai(active=False)
-            if controller.action:
-                controller.reset_all()
-                self.player.action()
-                self.player.assign_ai(active=False)
+            if controller.jump:
+                self.player.jump()
+            else:
+                self.player.reset_jump()
             if controller.menu:
                 controller.reset_all()
                 self.player.mymenu()

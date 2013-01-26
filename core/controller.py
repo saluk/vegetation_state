@@ -28,7 +28,6 @@ class Controller:
             self.joysticks.append(j)
     def reset_triggers(self):
         self.mbdown = 0
-        self.action = 0
         self.menu = 0
         self.restart = 0
         self.quit = 0
@@ -38,6 +37,7 @@ class Controller:
         self.right = 0
         self.up = 0
         self.down = 0
+        self.jump = 0
     def input(self):
         self.reset_triggers()
         engine = self.engine
@@ -91,13 +91,13 @@ class Controller:
         if e.type == pygame.JOYBUTTONUP:
             if e.joy == 0:
                 if e.button == 1:
-                    self.action = 1
+                    self.jump = 1
                 if e.button == 2:
                     self.menu = 1
         elif e.type == pygame.JOYBUTTONDOWN:
             if e.joy == 0:
                 if e.button == 1:
-                    self.action = 0
+                    self.jump = 0
                 if e.button == 2:
                     self.menu = 0
         if e.type == pygame.MOUSEBUTTONDOWN:
@@ -113,7 +113,7 @@ class Controller:
             elif e.key == pygame.K_DOWN:
                 self.down = 1
             if e.key == pygame.K_z:
-                self.action = 1
+                self.jump = 1
             if e.key == pygame.K_x:
                 self.menu = 1
             if e.key == pygame.K_r:
@@ -121,6 +121,8 @@ class Controller:
             if e.key == pygame.K_F6:
                 self.quit = 1
         elif e.type == pygame.KEYUP:
+            if e.key==pygame.K_z:
+                self.jump = 0
             if e.key == pygame.K_LEFT:
                 self.left = 0
             elif e.key == pygame.K_RIGHT:

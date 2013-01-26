@@ -13,20 +13,16 @@ class Player(Agent):
         self.hotspot = [16,38]
         self.facing = [-1,0]
         self.next_frame = 10
-        self.animdelay = 5
+        self.animdelay = 6
         self.frame = 0
         self.anim = None
         self.animating = False
-        self.walk_speed = 0.5
+        self.walk_speed = 3.5
         self.vector = [0,0]
-        self.mood = "happy"
-        self.speaking = False
-        self.speaking_anim = False
-        self.speaking_offset = [0,0]
+        
+        self.jumptime = 0
         
         self.particles = Particles()
-        
-        self.radius = 14   #collision radius around hotspot
         
         self.last_hit = None
         
@@ -102,21 +98,21 @@ class Player(Agent):
     def load(self,spritesheet):
         super(Player,self).load(spritesheet)
         self.anims = {}
-        order = ["down","left","right","up"]
-        for y in range(4):
+        order = ["right"]
+        for y in range(1):
             frames = []
             for x in range(4):
                 frames.append(self.graphics.subsurface([[x*32,y*48],[32,48]]))
             self.anims[order[y]] = frames
+        self.anims["left"] = [pygame.transform.flip(x,1,0) for x in self.anims["right"]]
     def draw(self,engine,offset=[0,0]):
-        elipserect = [[0,0],[20,12]]
-        elipse = pygame.Surface([20,12]).convert_alpha()
-        elipse.fill([0,0,0,0])
-        pygame.draw.ellipse(elipse,[0,0,0,50],elipserect)
+        #elipserect = [[0,0],[20,12]]
+        #elipse = pygame.Surface([20,12]).convert_alpha()
+        #elipse.fill([0,0,0,0])
+        #pygame.draw.ellipse(elipse,[0,0,0,50],elipserect)
         self.particles.draw(engine,offset)
-        engine.surface.blit(elipse,[self.pos[0]-offset[0]-10,self.pos[1]-offset[1]])
+        #engine.surface.blit(elipse,[self.pos[0]-offset[0]-10,self.pos[1]-offset[1]])
         p = self.pos[:]
-        self.pos[1]-=self.speaking_offset[0]
         super(Player,self).draw(engine,offset)
         self.pos = p
         x,y = (self.pos[0])//32*32-offset[0],(self.pos[1])//32*32-offset[1]
@@ -148,7 +144,6 @@ class Player(Agent):
             if col2 and not col0:
                 self.pos[1]-=self.vector[1]*self.walk_speed
             else:
-                self.facing = [0,self.vector[1]]
                 self.moved = True
         
         hit_any = None
@@ -244,10 +239,10 @@ class Player(Agent):
         self.facing = [1,0]
         self.vector[0] = 1
     def up(self):
-        self.facing = [0,-1]
+        #self.facing = [0,-1]
         self.vector[1] = -1
     def down(self):
-        self.facing = [0,1]
+        #self.facing = [0,1]
         self.vector[1] = 1
     def set_anim(self,anim):
         self.anim = anim
@@ -259,7 +254,27 @@ class Player(Agent):
         if self.frame>=len(anim):
             self.frame = 0
         self.surface = anim[self.frame]
+    def on_ground(self):
+        return self.world.collide_point(self,[int(self.pos[0]),int(self.rect().bottom+5)],"move")
+    def on_ceiling(self):
+        return self.world.collide_point(self,[int(self.pos[0]),int(self.rect().top-5)],"move")
+    def jump(self):
+        if self.on_ceiling():
+            self.jumptime = -1
+        if self.on_ground() and self.jumptime==0:
+            self.jumptime = 15
+        elif self.jumptime==0:
+            self.jumptime = -1
+        if self.jumptime>0:
+            self.vector[1]=-2
+            self.jumptime-=1
+            if self.jumptime==0:
+                self.jumptime = -1
+    def reset_jump(self):
+        self.jumptime = 0
     def update(self,world):
+        if self.jumptime <= 0:
+            self.vector[1]=2
         if self.vector[0] or self.vector[1]:
             self.walk()
             
@@ -267,10 +282,6 @@ class Player(Agent):
             anim = "left"
         elif self.facing[0]>0:
             anim = "right"
-        elif self.facing[1]<0:
-            anim = "up"
-        elif self.facing[1]>0:
-            anim = "down"
         else:
             anim = self.anim
         if anim!=self.anim:
@@ -285,19 +296,13 @@ class Player(Agent):
         self.particles.pos = self.pos[:]
         self.particles.update(world)
         
-        if self.speaking_anim:
-            self.speaking_offset[0] = 2+math.sin(self.speaking_offset[1])*2
-            self.speaking_offset[1]+=0.5
-        
         
     def collide(self,agent,flags=None):
         return self.collide_point(agent.pos,flags)
     def collide_point(self,p,flags=None):
-        radius = self.radius
-        left,top,right,bottom = self.pos[0]-radius+1,self.pos[1]-radius+1,self.pos[0]+radius-1,self.pos[1]+radius-1
+        left,top,right,bottom = self.pos[0]-16+1,self.pos[1]-42+1,self.pos[0]+16-1,self.pos[1]+16-1
         if p[0]>=left and p[0]<=right and p[1]>=top and p[1]<=bottom:
             return self
     def rect(self):
-        radius = self.radius
-        left,top,right,bottom = self.pos[0]-radius+1,self.pos[1]-radius+1,self.pos[0]+radius-1,self.pos[1]+radius-1
+        left,top,right,bottom = self.pos[0]-16+1,self.pos[1]-42+1,self.pos[0]+16-1,self.pos[1]+16-1
         return pygame.Rect([[left,top],[right-left,bottom-top]])
