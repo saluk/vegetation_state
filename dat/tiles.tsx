@@ -13,4 +13,9 @@
    <property name="vines" value="strong"/>
   </properties>
  </tile>
+ <tile id="42">
+  <properties>
+   <property name="spikes" value=""/>
+  </properties>
+ </tile>
 </tileset>

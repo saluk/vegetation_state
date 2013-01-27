@@ -29,15 +29,21 @@ class Tile(Agent):
         self.col = None    #full,top,bottom,left,right
         self.index = -1
         self.layer = None
+        self.save = ["pos","col","index","vines"]
     def serialized(self):
-        return {"pos":self.pos,"col":self.col,"index":self.index}
+        d = {}
+        for s in self.save:
+            if hasattr(self,s):
+                d[s] = getattr(self,s)
+        return d
     @staticmethod
-    def unserialize(d,tileset_list):
+    def unserialize(d,layer):
         t = Tile()
-        t.pos = d["pos"]
-        t.col = d["col"]
-        t.index = d["index"]
-        t.surface = tileset_list[t.index]
+        t.layer = layer
+        for s in t.save:
+            if s in d:
+                setattr(t,s,d[s])
+        t.set_surface()
         return t
     def is_empty(self):
         return self.index==-1
@@ -68,6 +74,7 @@ class Tile(Agent):
         if point[0]>=left and point[0]<=right and point[1]>=top and point[1]<=bottom:
             return self
     def hit(self,agent,laser):
+        print "hit",self,dir(self)
         if hasattr(self,"vines") and self.vines=="weak":
             x = self.pos[0]//32
             y = self.pos[1]//32-1
@@ -205,9 +212,11 @@ class TileLayer(Agent):
     def serialized(self):
         return{"tiles":[[x.serialized() for x in row] for row in self.tiles],"layer":self.layer}
     @staticmethod
-    def unserialize(d,tileset_list):
+    def unserialize(d,map):
         tl = TileLayer()
-        tl.tiles = [[Tile.unserialize(x,tileset_list) for x in row] for row in d["tiles"]]
+        tl.map = map
+        tl.tileset_list = map.tileset_list
+        tl.tiles = [[Tile.unserialize(x,tl) for x in row] for row in d["tiles"]]
         tl.layer = d["layer"]
         return tl
     def draw(self,engine,offset):
@@ -256,7 +265,7 @@ class TileMap(Agent):
         self.npc_spawns = d["npc_spawns"]
         self.map = []
         for layer in d["map"]:
-            self.map.append(TileLayer.unserialize(layer,self.tileset_list))
+            self.map.append(TileLayer.unserialize(layer,self))
             
         if d.get("boundary",None):
             self.boundary = convrect(d["boundary"])
@@ -345,7 +354,7 @@ class TileMap(Agent):
         self.saveetm()
         self.setup()
     def load(self,map):
-        if android:
+        if android or 1:
             return self.loadetm(map.replace(".tmx",".etm"))
         self.loadtmx(map)
     def read_tile_layer(self,layer):
