@@ -41,6 +41,8 @@ class Tile(Agent):
         return t
     def is_empty(self):
         return self.index==-1
+    def set_surface(self):
+        self.surface = self.layer.tileset_list[self.index]
     def draw(self,engine,offset):
         super(Tile,self).draw(engine,offset)
         if hasattr(self,"chest"):
@@ -349,6 +351,7 @@ class TileMap(Agent):
     def read_tile_layer(self,layer):
         maplayer = TileLayer()
         maplayer.map = self
+        maplayer.tileset_list = self.tileset_list
         maplayer.layer = len(self.map)
         x=y=0
         row = []
@@ -361,7 +364,7 @@ class TileMap(Agent):
                 tile = Tile()
                 tile.layer = maplayer
                 tile.index = ti
-                tile.surface = self.tileset_list[tile.index]
+                tile.set_surface()
                 tile.pos = [x*32,y*32]
                 for k,v in self.tile_properties.get(ti,{}).items():
                     setattr(tile,k,v)

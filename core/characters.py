@@ -22,6 +22,36 @@ class Laser(Agent):
             p1 = [self.pos[0]-offset[0],self.pos[1]-offset[1]+random.randint(-2,2)-5]
             p2 = [self.end[0]-offset[0],self.end[1]-offset[1]+random.randint(-5,5)]
             pygame.draw.line(engine.surface,[0,random.randint(40,140),0],p1,p2,2)
+            
+class WaterDrop(Agent):
+    def update(self,*args):
+        self.pos[1]+=4
+        col = self.world.collide_point(self,[int(x) for x in self.pos],"move")
+        if hasattr(col,"vines"):
+            pass
+            #Grow vines here
+            self.kill = 1
+            self.parent.water = None
+            x=col.pos[0]//32
+            y=col.pos[1]//32-1
+            while y>=0:
+                ncol = col.layer.tiles[y][x]
+                ncol2 = col.layer.map.collisions[y][x]
+                if ncol.col or ncol2.col:
+                    break
+                ncol.pos = [x*32,y*32]
+                ncol.index = col.index
+                ncol.vines = 1
+                ncol.col = col.col
+                ncol.set_surface()
+                y-=1
+            col.layer.cache_surface = None
+        elif col:
+            self.kill = 1
+            self.parent.water = None
+    def draw(self,engine,offset):
+        p = [int(self.pos[0]),int(self.pos[1])]
+        pygame.draw.circle(engine.surface,[0,0,100],[p[0]-offset[0],p[1]-offset[1]],10)
 
 class Player(Agent):
     def init(self):
@@ -36,6 +66,7 @@ class Player(Agent):
         self.a = [0,0]
         self.vector = [0,0]
         self.laser = None
+        self.water = None
         
         self.jumptime = 0
         
@@ -153,7 +184,7 @@ class Player(Agent):
             if col1 and hasattr(col1,"col") and not col0:
                 self.pos[0]-=self.vector[0]
             else:
-                self.facing = [self.vector[0],0]
+                self.facing = [self.vector[0]/abs(self.vector[0]),0]
                 self.moved = True
         if self.vector[1]:
             self.pos[1]+=self.vector[1]
@@ -364,3 +395,12 @@ class Player(Agent):
                     ob.hit(self,l)
                 break
         self.world.add(l)
+    def grow(self):
+        if self.water:
+            return
+        self.water = WaterDrop()
+        self.water.parent = self
+        self.water.mapname = self.mapname
+        self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]
+        self.world.add(self.water)
+        

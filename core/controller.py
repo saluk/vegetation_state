@@ -32,6 +32,7 @@ class Controller:
         self.restart = 0
         self.quit = 0
         self.shoot = 0
+        self.grow = 0
     def reset_all(self):
         self.reset_triggers()
         self.left = 0
@@ -117,6 +118,8 @@ class Controller:
                 self.jump = 1
             if e.key == pygame.K_x:
                 self.shoot = 1
+            if e.key == pygame.K_c:
+                self.grow = 1
             if e.key == pygame.K_r:
                 self.restart = 1
             if e.key == pygame.K_F6:
@@ -134,6 +137,8 @@ class Controller:
                 self.down = 0
             elif e.key == pygame.K_x:
                 self.shoot = 0
+            if e.key == pygame.K_c:
+                self.grow = 0
             if e.key == pygame.K_r:
                 self.restart = 0
             if e.key == pygame.K_F6:
