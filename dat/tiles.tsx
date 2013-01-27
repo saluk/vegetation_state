@@ -4,7 +4,13 @@
  <tile id="9">
   <properties>
    <property name="col" value="full"/>
-   <property name="vines" value=""/>
+   <property name="vines" value="weak"/>
+  </properties>
+ </tile>
+ <tile id="41">
+  <properties>
+   <property name="col" value="full"/>
+   <property name="vines" value="strong"/>
   </properties>
  </tile>
 </tileset>

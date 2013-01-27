@@ -68,7 +68,7 @@ class Tile(Agent):
         if point[0]>=left and point[0]<=right and point[1]>=top and point[1]<=bottom:
             return self
     def hit(self,agent,laser):
-        if hasattr(self,"vines"):
+        if hasattr(self,"vines") and self.vines=="weak":
             x = self.pos[0]//32
             y = self.pos[1]//32-1
             to_erase = []
