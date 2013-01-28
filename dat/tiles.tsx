@@ -15,6 +15,7 @@
  </tile>
  <tile id="42">
   <properties>
+   <property name="col" value="trigger"/>
    <property name="spikes" value=""/>
   </properties>
  </tile>

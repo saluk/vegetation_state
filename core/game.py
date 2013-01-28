@@ -16,6 +16,7 @@ songs = {"castle":"CornFields","room1":"Village","default":None}
 
 class GameWorld(World):
     def start(self):
+        self.do_restart = False
         self.objects = []
         
         self.maps = {}
@@ -136,6 +137,8 @@ class GameWorld(World):
         
         self.focus_camera()
         self.player.menu.pos = self.player.pos
+        if self.do_restart:
+            self.restart()
     def collide(self,agent,flags=None):
         for ob in self.get_objects(agent):
             if ob==agent:
@@ -154,18 +157,19 @@ class GameWorld(World):
             col = ob.collide_point(p,flags)
             if col:
                 return col
+    def restart(self):
+        import game
+        import world
+        import tiles
+        import characters
+        reload(world)
+        reload(tiles)
+        reload(characters)
+        reload(game)
+        self.engine.world = game.make_world(self.engine)
     def input(self,controller):
         if controller.restart:
-            import game
-            import world
-            import tiles
-            import characters
-            reload(world)
-            reload(tiles)
-            reload(characters)
-            reload(game)
-            self.engine.world = game.make_world(self.engine)
-            return
+            return self.restart()
         self.player.idle()
         player_move = True
         if self.player.texter:
@@ -179,8 +183,8 @@ class GameWorld(World):
             if controller.right:
                 controller.right = False
                 self.player.menu.rotate_right()
-            if controller.action:
-                self.player.menu.action()
+            #~ if controller.action:
+                #~ self.player.menu.action()
             if controller.menu:
                 self.player.menu.visible = False
             player_move = False

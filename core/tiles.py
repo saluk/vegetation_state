@@ -26,10 +26,10 @@ class FallingTiles(Agent):
 
 class Tile(Agent):
     def init(self):
-        self.col = None    #full,top,bottom,left,right
+        self.col = None    #full,top,bottom,left,right,trigger
         self.index = -1
         self.layer = None
-        self.save = ["pos","col","index","vines"]
+        self.save = ["pos","col","index","vines","spikes"]
     def serialized(self):
         d = {}
         for s in self.save:
@@ -74,7 +74,6 @@ class Tile(Agent):
         if point[0]>=left and point[0]<=right and point[1]>=top and point[1]<=bottom:
             return self
     def hit(self,agent,laser):
-        print "hit",self,dir(self)
         if hasattr(self,"vines") and self.vines=="weak":
             x = self.pos[0]//32
             y = self.pos[1]//32-1
@@ -354,7 +353,7 @@ class TileMap(Agent):
         self.saveetm()
         self.setup()
     def load(self,map):
-        if android or 1:
+        if android or 0:
             return self.loadetm(map.replace(".tmx",".etm"))
         self.loadtmx(map)
     def read_tile_layer(self,layer):

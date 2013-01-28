@@ -34,7 +34,9 @@ class WaterDrop(Agent):
             self.parent.water = None
             x=col.pos[0]//32
             y=col.pos[1]//32-1
-            while y>=0:
+            n = 3
+            while y>=0 and n:
+                n-=1
                 ncol = col.layer.tiles[y][x]
                 ncol2 = col.layer.map.collisions[y][x]
                 if ncol.col or ncol2.col:
@@ -55,7 +57,7 @@ class WaterDrop(Agent):
 
 class Player(Agent):
     def init(self):
-        self.hotspot = [16,38]
+        self.hotspot = [16,32]
         self.facing = [-1,0]
         self.next_frame = 10
         self.animdelay = 6
@@ -181,23 +183,34 @@ class Player(Agent):
         if self.vector[0]:
             self.pos[0]+=self.vector[0]
             col1 = self.world.collide(self,"move")
-            if col1 and hasattr(col1,"col") and not col0:
-                self.pos[0]-=self.vector[0]
+            if col1 and hasattr(col1,"col") and col1.col!="trigger" and not col0:
+                if self.vector[0]>0:
+                    self.pos[0]=col1.rect().left-16
+                else:
+                    self.pos[0]=col1.rect().right+16
+                self.a[0] = 0
             else:
                 self.facing = [self.vector[0]/abs(self.vector[0]),0]
                 self.moved = True
         if self.vector[1]:
             self.pos[1]+=self.vector[1]
             col2 = self.world.collide(self,"move")
-            if col2 and hasattr(col2,"col") and not col0:
-                self.pos[1]-=self.vector[1]
+            if col2 and hasattr(col2,"col") and col2.col!="trigger" and not col0:
+                if self.vector[1]>0:
+                    self.pos[1]=col2.rect().top-16
+                else:
+                    self.pos[1]=col2.rect().bottom+48
+                    self.jumptime = -1
             else:
                 self.moved = True
+                
         
         hit_any = None
         for col in col1,col2:
             if col:
                 hit_any = col
+                if hasattr(col,"col") and hasattr(col,"spikes"):
+                    self.world.do_restart = True
                 if isinstance(col,dict):
                     if "warptarget" in col:
                         self.world.change_map(self,col["map"],col["warptarget"])

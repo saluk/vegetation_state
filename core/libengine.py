@@ -34,6 +34,7 @@ except:
 
 engine = engine.Engine()
 controller = controller.Controller(engine)
+engine.controller = controller
 
 def run():
     engine.running = True
