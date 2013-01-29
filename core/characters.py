@@ -27,6 +27,8 @@ class WaterDrop(Agent):
     def update(self,*args):
         self.pos[1]+=4
         col = self.world.collide_point(self,[int(x) for x in self.pos],"move")
+        if col==self.parent:
+            return
         if hasattr(col,"vines"):
             pass
             #Grow vines here
@@ -43,7 +45,7 @@ class WaterDrop(Agent):
                     break
                 ncol.pos = [x*32,y*32]
                 ncol.index = col.index
-                ncol.vines = 1
+                ncol.vines = "weak"
                 ncol.col = col.col
                 ncol.set_surface()
                 y-=1
@@ -394,6 +396,9 @@ class Player(Agent):
     def rect(self):
         left,top,right,bottom = self.pos[0]-16+1,self.pos[1]-42+1,self.pos[0]+16-1,self.pos[1]+16-1
         return pygame.Rect([[left,top],[right-left,bottom-top]])
+        
+        
+
     def shoot(self):
         if self.laser:
             return
