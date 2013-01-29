@@ -27,11 +27,11 @@ class Engine:
         self.swidth = 640
         self.sheight = 480
         if android:
-            self.swidth = 640
-            self.sheight = 480
+            self.swidth = 320240
+            self.sheight = 240
         #The interactive width, what resolution the game is actually rendered at
-        self.iwidth = 640
-        self.iheight = 480
+        self.iwidth = 480
+        self.iheight = 320
         self.sfw = float(self.swidth)/float(self.iwidth)
         self.sfh = float(self.sheight)/float(self.iheight)
         self.window = None   #The window is the actual window
@@ -39,7 +39,7 @@ class Engine:
         self.blank = None
         self.running = False   #If this is set to false, the game will quit
         self.paused = False   #Not implemented, should be controlled by the world
-        self.framerate = 30    #What framerate the game runs at
+        self.framerate = 60    #What framerate the game runs at
         self.dt = 0
         self.show_fps = True
         self.clock = None

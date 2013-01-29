@@ -52,8 +52,8 @@ class WaterDrop(Agent):
             self.kill = 1
             self.parent.water = None
     def draw(self,engine,offset):
-        p = [int(self.pos[0]),int(self.pos[1])]
-        pygame.draw.circle(engine.surface,[0,0,100],[p[0]-offset[0],p[1]-offset[1]],10)
+        p = [int(self.pos[0]-offset[0]),int(self.pos[1]-offset[1])]
+        pygame.draw.circle(engine.surface,[0,0,100],p,10)
 
 class Player(Agent):
     def init(self):
