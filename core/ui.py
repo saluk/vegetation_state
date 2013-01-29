@@ -69,9 +69,13 @@ class Radial(Agent):
             self.timer.pos = [200,80]
             self.timer.draw(engine)
     def rotate_right(self):
+        if not self.options:
+            return
         self.options.append(self.options.pop(0))
         self.angle+=self.diff_angle
     def rotate_left(self):
+        if not self.options:
+            return
         self.options.insert(0,self.options.pop(-1))
         self.angle-=self.diff_angle
     def setup(self,options,pause=True,label="Test Label",ttl=-1):
