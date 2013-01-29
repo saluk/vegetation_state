@@ -193,6 +193,8 @@ class GameWorld(World):
                 self.player.shoot()
             if controller.grow:
                 self.player.grow()
+            if controller.push:
+                self.player.shootpush()
             if controller.left:
                 self.player.left()
                 self.player.assign_ai(active=False)

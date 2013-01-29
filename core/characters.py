@@ -23,6 +23,21 @@ class Laser(Agent):
             p2 = [self.end[0]-offset[0],self.end[1]-offset[1]+random.randint(-5,5)]
             pygame.draw.line(engine.surface,[0,random.randint(40,140),0],p1,p2,2)
             
+class PushLaser(Agent):
+    def init(self):
+        self.end = [0,0]
+        self.timeout = 30
+    def update(self,*args):
+        self.timeout-=1
+        if self.timeout<=0:
+            self.kill = 1
+            self.parent.laser = None
+    def draw(self,engine,offset):
+        for i in range(3):
+            p1 = [self.pos[0]-offset[0],self.pos[1]-offset[1]+random.randint(-2,2)-5]
+            p2 = [self.end[0]-offset[0],self.end[1]-offset[1]+random.randint(-5,5)]
+            pygame.draw.line(engine.surface,[0,0,random.randint(140,240)],p1,p2,2)
+            
 class WaterDrop(Agent):
     def update(self,*args):
         self.pos[1]+=4
@@ -416,6 +431,25 @@ class Player(Agent):
                     ob.hit(self,l)
                 break
         self.world.add(l)
+
+    def shootpush(self):
+        if self.laser:
+            return
+        l = Laser()
+        l.parent = self
+        self.laser = l
+        l.pos = [int(self.pos[0]+3*self.facing[0]),int(self.pos[1])]
+        l.end = [int(l.pos[0]//32*32+16),int(l.pos[1]//32*32+16)]
+        while 1:
+            l.end[0]+=int(self.facing[0]*32)
+            ob = self.world.collide_point(self,l.end,"move")
+            #Maybe break here, maybe keep going
+            if ob:
+                if hasattr(ob,"push"):
+                    ob.push(self,l,self.facing[0])
+                break
+        self.world.add(l)
+
     def grow(self):
         if self.water:
             return

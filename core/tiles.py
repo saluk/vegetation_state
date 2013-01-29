@@ -18,9 +18,9 @@ class FallingTiles(Agent):
         self.a = [random.randint(-1,1),1]
     def update(self,*args):
         self.surface = pygame.transform.rotate(self.graphic,self.ang)
-        self.ang+=self.a[0]
-        self.pos[0]+=self.a[0]
-        self.pos[1]+=self.a[1]
+        self.ang+=self.a[0]*3
+        self.pos[0]+=self.a[0]*3
+        self.pos[1]+=self.a[1]*3
         if self.pos[0]<0 or self.pos[0]>640 or self.pos[1]<0 or self.pos[1]>480:
             self.kill = 1
 
@@ -73,6 +73,29 @@ class Tile(Agent):
             top+=16
         if point[0]>=left and point[0]<=right and point[1]>=top and point[1]<=bottom:
             return self
+    def push(self,agent,laser,dirv):
+        if hasattr(self,"vines"):
+            x = self.pos[0]
+            x1 = x+int(dirv)*32
+            y = self.pos[1]
+            yabove = y-32
+            y2 = y+32
+            topvine = self.layer.map.collide_point([x,yabove],"move")
+            if topvine and hasattr(topvine,"vines"):
+                return
+            free = self.layer.map.collide_point([x1,y],"move")
+            if free:
+                return
+            ground = self.layer.map.collide_point([x1,y2],"move")
+            if not ground:
+                return
+            free = self.layer.get_tile([x1//32,y//32])
+            print dir(free)
+            free.vines = self.vines
+            free.col = self.col
+            free.index = self.index
+            free.surface = self.surface
+            self.erase()
     def hit(self,agent,laser):
         if hasattr(self,"vines") and self.vines=="weak":
             x = self.pos[0]//32
@@ -119,8 +142,13 @@ class Tile(Agent):
                 t.erase()
     def erase(self):
         if self.layer:
-            self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()
-            t.layer = self.layer
+            #self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()
+            #t.layer = self.layer
+            self.index = -1
+            self.set_surface()
+            if hasattr(self,"vines"):
+                del self.vines
+            self.col = None
             self.layer.cache_surface = None
             
 class Frober(Agent):
@@ -230,6 +258,10 @@ class TileLayer(Agent):
             engine.surface = s
         engine.surface.blit(self.cache_surface,[-offset[0],-offset[1]])
         [l.draw(engine,offset) for l in self.lights]
+    def get_tile(self,pos):
+        if pos[1]>=0 and pos[1]<len(self.tiles):
+            if pos[0]>=0 and pos[0]<len(self.tiles[pos[1]]):
+                return self.tiles[pos[1]][pos[0]]
 
 class TileMap(Agent):
     tileset_images = {}
