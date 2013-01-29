@@ -201,6 +201,8 @@ class Player(Agent):
                 else:
                     self.pos[1]=col2.rect().bottom+48
                     self.jumptime = -1
+                    if self.vector[1]<0:
+                        self.vector[1]=0
             else:
                 self.moved = True
                 
@@ -316,23 +318,25 @@ class Player(Agent):
     def on_ceiling(self):
         return self.world.collide_point(self,[int(self.pos[0]),int(self.rect().top-5)],"move")
     def jump(self):
-        if self.on_ceiling():
-            self.jumptime = -1
         if self.on_ground() and self.jumptime==0:
             self.jumptime = 15
+            self.vector[1]=-10
         elif self.jumptime==0:
             self.jumptime = -1
+            if self.vector[1]<0:
+                self.vector[1]=0
         if self.jumptime>0:
-            self.vector[1]=-6
             self.jumptime-=1
             if self.jumptime==0:
                 self.jumptime = -1
     def reset_jump(self):
         self.jumptime = 0
+        if self.vector[1]<0:
+            self.vector[1]=0
     def physics(self):
         mx = 5
-        my = 5
-        damp = 0.5
+        my = 10
+        damp = 1
         if self.a[0]!=0:
             self.vector[0]+=self.a[0]
             if self.vector[0]<-mx:
@@ -355,8 +359,7 @@ class Player(Agent):
             if self.vector[1]>my:
                 self.vector[1]=my
     def update(self,world):
-        if self.jumptime <= 0:
-            self.a[1]=1
+        self.a[1]=0.3
             
         self.physics()
             
