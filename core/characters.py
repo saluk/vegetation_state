@@ -33,10 +33,10 @@ class PushLaser(Agent):
             self.kill = 1
             self.parent.laser = None
     def draw(self,engine,offset):
-        for i in range(3):
+        for i in range(1):
             p1 = [self.pos[0]-offset[0],self.pos[1]-offset[1]+random.randint(-2,2)-5]
             p2 = [self.end[0]-offset[0],self.end[1]-offset[1]+random.randint(-5,5)]
-            pygame.draw.line(engine.surface,[0,0,random.randint(140,240)],p1,p2,2)
+            pygame.draw.line(engine.surface,[0,0,random.randint(140,240)],p1,p2,5)
             
 class WaterDrop(Agent):
     def update(self,*args):
@@ -197,15 +197,17 @@ class Player(Agent):
         #calculate inside collisions
         col0 = self.world.collide(self)
         
+        hit_horiz = False
         if self.vector[0]:
             self.pos[0]+=self.vector[0]
             col1 = self.world.collide(self,"move")
             if col1 and hasattr(col1,"col") and col1.col!="trigger" and not col0:
                 if self.vector[0]>0:
+                    print col1.rect()
                     self.pos[0]=col1.rect().left-16
                 else:
-                    self.pos[0]=col1.rect().right+16
-                self.a[0] = 0
+                    self.pos[0]=col1.rect().right+16-1
+                hit_horiz = True
             else:
                 self.facing = [self.vector[0]/abs(self.vector[0]),0]
                 self.moved = True
@@ -221,7 +223,8 @@ class Player(Agent):
                     if self.vector[1]<0:
                         self.vector[1]=0
             else:
-                self.moved = True
+                pass
+                #self.moved = True
                 
         
         hit_any = None
@@ -244,6 +247,8 @@ class Player(Agent):
             self.particles.active = True
             self.particles.vector = [-self.vector[0],-self.vector[1]]
             
+        if hit_horiz:
+            self.vector[0] = 0
         self.map.add_entity(self)
     def say(self,text,actor=None,subjects=[]):
         if self.name != "erik":
@@ -427,6 +432,8 @@ class Player(Agent):
             ob = self.world.collide_point(self,l.end,"move")
             #Maybe break here, maybe keep going
             if ob:
+                if ob.col=="trigger":
+                    continue
                 if hasattr(ob,"hit"):
                     ob.hit(self,l)
                 break
@@ -435,7 +442,7 @@ class Player(Agent):
     def shootpush(self):
         if self.laser:
             return
-        l = Laser()
+        l = PushLaser()
         l.parent = self
         self.laser = l
         l.pos = [int(self.pos[0]+3*self.facing[0]),int(self.pos[1])]
@@ -445,6 +452,8 @@ class Player(Agent):
             ob = self.world.collide_point(self,l.end,"move")
             #Maybe break here, maybe keep going
             if ob:
+                if ob.col=="trigger":
+                    continue
                 if hasattr(ob,"push"):
                     ob.push(self,l,self.facing[0])
                 break
