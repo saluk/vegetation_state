@@ -44,11 +44,13 @@ class WaterDrop(Agent):
         col = self.world.collide_point(self,[int(x) for x in self.pos],"move")
         if col==self.parent:
             return
-        if hasattr(col,"vines"):
-            pass
-            #Grow vines here
+        if col:
             self.kill = 1
             self.parent.water = None
+        if hasattr(col,"vines"):
+            if col.vines=="horiz":
+                #TODO: convert vine into corner and grow vertical
+                return
             x=col.pos[0]//32
             y=col.pos[1]//32-1
             n = 3
@@ -60,17 +62,57 @@ class WaterDrop(Agent):
                     break
                 ncol.pos = [x*32,y*32]
                 ncol.index = col.index
-                ncol.vines = "weak"
+                ncol.vines = col.vines
                 ncol.col = col.col
                 ncol.set_surface()
                 y-=1
             col.layer.cache_surface = None
-        elif col:
-            self.kill = 1
-            self.parent.water = None
     def draw(self,engine,offset):
         p = [int(self.pos[0]-offset[0]),int(self.pos[1]-offset[1])]
         pygame.draw.circle(engine.surface,[0,0,100],p,10)
+        
+class HorizWaterDrop(Agent):
+    def update(self,*args):
+        self.pos[1]+=4
+        col = self.world.collide_point(self,[int(x) for x in self.pos],"move")
+        if col==self.parent:
+            return
+        if col:
+            self.kill = 1
+            self.parent.water = None
+        if hasattr(col,"vines") and col.vines=="horiz":
+            x=col.pos[0]//32
+            y=col.pos[1]//32
+            left = x-1
+            right = x+1
+            lefttile = self.world.collide_point(self,[left*32,y*32],"move")
+            righttile = self.world.collide_point(self,[right*32,y*32],"move")
+            if lefttile and lefttile.col:
+                print "right",lefttile,lefttile.col
+                dir=1
+            elif righttile and righttile.col:
+                dir=-1
+            else:
+                return
+            n = 3
+            while x>=0 and x<len(col.layer.tiles[y]) and n:
+                print x,n,len(col.layer.tiles[y])
+                x+=dir
+                print x
+                n-=1
+                ncol = col.layer.tiles[y][x]
+                ncol2 = col.layer.map.collisions[y][x]
+                if ncol.col or ncol2.col:
+                    break
+                ncol.pos = [x*32,y*32]
+                ncol.index = col.index
+                ncol.vines = col.vines
+                ncol.col = col.col
+                ncol.set_surface()
+            col.layer.cache_surface = None
+    def draw(self,engine,offset):
+        p = [int(self.pos[0]-offset[0]),int(self.pos[1]-offset[1])]
+        pygame.draw.circle(engine.surface,[0,100,0],p,10)
 
 class Player(Agent):
     def init(self):
@@ -203,7 +245,6 @@ class Player(Agent):
             col1 = self.world.collide(self,"move")
             if col1 and hasattr(col1,"col") and col1.col!="trigger" and not col0:
                 if self.vector[0]>0:
-                    print col1.rect()
                     self.pos[0]=col1.rect().left-16
                 else:
                     self.pos[0]=col1.rect().right+16-1
@@ -463,6 +504,15 @@ class Player(Agent):
         if self.water:
             return
         self.water = WaterDrop()
+        self.water.parent = self
+        self.water.mapname = self.mapname
+        self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]
+        self.world.add(self.water)
+        
+    def growhoriz(self):
+        if self.water:
+            return
+        self.water = HorizWaterDrop()
         self.water.parent = self
         self.water.mapname = self.mapname
         self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]

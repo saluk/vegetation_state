@@ -193,6 +193,8 @@ class GameWorld(World):
                 self.player.shoot()
             if controller.grow:
                 self.player.grow()
+            if controller.grow2:
+                self.player.growhoriz()
             if controller.push:
                 self.player.shootpush()
             if controller.left:

@@ -19,4 +19,10 @@
    <property name="spikes" value=""/>
   </properties>
  </tile>
+ <tile id="73">
+  <properties>
+   <property name="col" value="full"/>
+   <property name="vines" value="horiz"/>
+  </properties>
+ </tile>
 </tileset>
