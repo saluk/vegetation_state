@@ -38,27 +38,27 @@
     <property name="destination" value="R"/>
    </properties>
   </object>
-  <object x="62" y="-12" width="65" height="23">
+  <object name="warpTL" x="62" y="-12" width="65" height="23">
    <properties>
     <property name="warp" value="hubupgate_L"/>
    </properties>
   </object>
-  <object x="417" y="-15" width="124" height="22">
+  <object name="warpTR" x="417" y="-15" width="124" height="22">
    <properties>
     <property name="warp" value="hubupgate_R"/>
    </properties>
   </object>
-  <object x="631" y="66" width="16" height="91">
+  <object name="warpR" x="631" y="66" width="16" height="91">
    <properties>
     <property name="warp" value="hubrightgate_L"/>
    </properties>
   </object>
-  <object x="480" y="474" width="123" height="16">
+  <object name="warpB" x="480" y="474" width="123" height="16">
    <properties>
     <property name="warp" value="hubdowngate_T"/>
    </properties>
   </object>
-  <object x="-26" y="258" width="33" height="91">
+  <object name="warpL" x="-26" y="258" width="33" height="91">
    <properties>
     <property name="warp" value="hubleftgate_R"/>
    </properties>

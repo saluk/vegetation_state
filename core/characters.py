@@ -287,12 +287,12 @@ class Player(Agent):
                 if hasattr(col,"col") and hasattr(col,"spikes"):
                     self.world.do_restart = True
                 if isinstance(col,dict):
-                    if "warptarget" in col and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
+                    if "warptarget" in col: #and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
                         print self.mapname,col
                         print self.world.events
                         self.world.events.append(
                         {"func":"change_map",
-                        "args":(self,col["map"],col["warptarget"],col["direction"])
+                        "args":(self,col["map"],col["warptarget"],"none")
                         })
                         break
     def say(self,text,actor=None,subjects=[]):

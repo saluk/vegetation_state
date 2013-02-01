@@ -23,16 +23,24 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="A" x="-22" y="385" width="32" height="64">
+  <object name="warpA" x="3" y="387" width="27" height="68">
    <properties>
-    <property name="direction" value="left"/>
     <property name="warp" value="room1_A"/>
    </properties>
   </object>
-  <object name="B" x="631" y="369" width="27" height="68">
+  <object name="A" x="53" y="424" width="32" height="32">
    <properties>
-    <property name="direction" value="right"/>
+    <property name="destination" value="A"/>
+   </properties>
+  </object>
+  <object name="warpB" x="624" y="369" width="27" height="68">
+   <properties>
     <property name="warp" value="room3_A"/>
+   </properties>
+  </object>
+  <object name="B" x="594" y="423" width="32" height="32">
+   <properties>
+    <property name="destination" value="B"/>
    </properties>
   </object>
   <object name="playerspawn" x="88" y="412" width="32" height="32"/>

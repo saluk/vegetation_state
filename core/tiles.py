@@ -30,6 +30,8 @@ class Tile(Agent):
         self.index = -1
         self.layer = None
         self.save = ["pos","col","index","vines","spikes"]
+    def rect(self):
+        return pygame.Rect([self.pos,[32,32]])
     def serialized(self):
         d = {}
         for s in self.save:
@@ -531,7 +533,10 @@ class TileMap(Agent):
     def collide_point(self,point,flags=None):
             x,y = [i//32 for i in point]
             if x<0 or y<0 or x>=self.map_width or y>=self.map_height:
-                return Tile()
+                t = Tile()
+                t.pos = [x*32,y*32]
+                t.col = "full"
+                return t
             col = 0
             if flags=="move":
                 for layer in reversed(self.map):

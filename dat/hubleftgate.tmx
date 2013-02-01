@@ -13,7 +13,7 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object x="632" y="260" width="17" height="91">
+  <object name="warpR" x="632" y="260" width="17" height="91">
    <properties>
     <property name="warp" value="hub_L"/>
    </properties>

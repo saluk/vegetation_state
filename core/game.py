@@ -98,28 +98,31 @@ class GameWorld(World):
         if map not in self.maps:
             print "NO MAP"
             return
-        if target not in self.maps[map].warps:
+        if target not in self.maps[map].warps and target not in self.maps[map].destinations:
             print "NO 'DESTINATION'"
             return
         character.following_points = []
-        warp = self.maps[map].warps[target]
-        target = warp["rect"]
-        amt = 16
-        if direction=="left":
-            character.pos = [target.left-amt,character.pos[1]-4]
-            print character,map,target
-            print "warp left"
-        elif direction=="right":
-            character.pos = [target.right+amt,character.pos[1]-4]
-            print "warp right"
-        elif direction=="up":
-            character.pos = [character.pos[0],target.top-amt]
-            print "warp up"
-        elif direction[1]=="down":
-            character.pos = [character.pos[0],target.bottom+amt]
-            print "warp down"
-        else:
-            character.pos = [target.left,target.top]
+        #~ if direction=="none":
+            #~ target = self.maps[map].destinations[target]
+        #~ else:
+            #~ target = self.maps[map].warps[target]["rect"]
+        #~ if direction=="left":
+            #~ character.pos = [target.left-32,character.pos[1]]
+            #~ print character,map,target
+            #~ print "warp left"
+        #~ elif direction=="right":
+            #~ character.pos = [target.right+32,character.pos[1]]
+            #~ print "warp right"
+        #~ elif direction=="up":
+            #~ character.pos = [character.pos[0],target.top-12]
+            #~ print "warp up"
+        #~ elif direction=="down":
+            #~ character.pos = [character.pos[0],target.bottom]
+            #~ print "warp down"
+        #~ else:
+            #~ character.pos = [target.left,target.top]
+        target = self.maps[map].destinations[target]
+        character.pos = [target.left,target.top]
         character.mapname = map
         character.map = self.maps[map]
         if character == self.camera_focus:

@@ -13,22 +13,44 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="B" x="103" y="469" width="80" height="20">
+  <object name="warpB" x="103" y="469" width="80" height="20">
    <properties>
-    <property name="direction" value="down"/>
     <property name="warp" value="hubupgate_A"/>
    </properties>
   </object>
-  <object name="A" x="-22" y="364" width="27" height="68">
+  <object name="A" x="35" y="426" width="32" height="32">
    <properties>
-    <property name="direction" value="left"/>
+    <property name="destination" value="A"/>
+   </properties>
+  </object>
+  <object name="warpA" x="-8" y="365" width="27" height="68">
+   <properties>
     <property name="warp" value="room2_B"/>
    </properties>
   </object>
-  <object name="R1" x="235" y="471" width="407" height="24">
+  <object name="B" x="140" y="436" width="32" height="32">
    <properties>
-    <property name="direction" value="down"/>
-    <property name="warp" value="hubupgate_T"/>
+    <property name="destination" value="B"/>
+   </properties>
+  </object>
+  <object name="R1" x="592" y="407" width="32" height="32">
+   <properties>
+    <property name="destination" value="R1"/>
+   </properties>
+  </object>
+  <object name="warpR1" x="455" y="471" width="182" height="24">
+   <properties>
+    <property name="warp" value="hubupgate_TR"/>
+   </properties>
+  </object>
+  <object name="R2" x="269" y="404" width="32" height="32">
+   <properties>
+    <property name="destination" value="R2"/>
+   </properties>
+  </object>
+  <object name="warpR2" x="233" y="473" width="182" height="24">
+   <properties>
+    <property name="warp" value="hubupgate_TL"/>
    </properties>
   </object>
  </objectgroup>

@@ -24,11 +24,16 @@
  </layer>
  <objectgroup name="spawns" width="20" height="15">
   <object name="playerspawn1" x="63" y="251" width="32" height="32"/>
-  <object name="A" x="632" y="384" width="32" height="64">
+  <object name="warpA" x="628" y="384" width="32" height="60">
    <properties>
-    <property name="direction" value="right"/>
     <property name="warp" value="room2_A"/>
    </properties>
+  </object>
+  <object name="A" x="608" y="426">
+   <properties>
+    <property name="destination" value="A"/>
+   </properties>
+   <polyline points="0,0 -11,3"/>
   </object>
  </objectgroup>
 </map>
