@@ -54,7 +54,7 @@ def run():
             if android.check_pause():
                 android.wait_for_resume()
         
-        engine.dt = engine.clock.tick(120)#getattr(engine,"framerate",30))
+        engine.dt = engine.clock.tick(getattr(engine,"framerate",30))
         engine.dt = min(engine.dt*.001*getattr(engine,"framerate",60),100.0)
         engine.update()
         engine.next_screen -= engine.dt
