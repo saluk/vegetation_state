@@ -284,10 +284,11 @@ class TileMap(Agent):
         self.regions = {}
         for r in d["regions"]:
             self.regions[r] = convrect(d["regions"][r])
-        self.warps = []
-        for w in d["warps"]:
+        self.warps = {}
+        for wn in d["warps"]:
+            w = d["warps"][wn]
             w["rect"] = convrect(w["rect"])
-            self.warps.append(w)
+            self.warps[wn] = w
         self.frobers = [Frober.unserialize(f,self) for f in d["frobers"]]
         self.destinations = {}
         for dest in d["destinations"]:
@@ -317,12 +318,13 @@ class TileMap(Agent):
         d["regions"] = {}
         for reg in self.regions:
             d["regions"][reg] = convrect(self.regions[reg])
-        d["warps"] = []
-        for w in self.warps:
+        d["warps"] = {}
+        for wn in self.warps:
+            w = self.warps[wn]
             w2 = {}
             w2.update(w)
             w2["rect"] = convrect(w["rect"])
-            d["warps"].append(w2)
+            d["warps"][wn] = w2
         d["frobers"] = [f.serialized() for f in self.frobers]
         d["destinations"] = {}
         for dest in self.destinations:
@@ -363,7 +365,7 @@ class TileMap(Agent):
         self.tileset_list = [None]
         self.tile_properties = {}
         self.regions = {}   #rectangles
-        self.warps = []    #dicts with a rectangle
+        self.warps = {}    #dicts with a rectangle
         self.frobers = []     #frober objects
         self.destinations = {}    #rects
         self.paths = {}         #points
@@ -429,7 +431,7 @@ class TileMap(Agent):
                 self.regions["playerspawn"] = r
             elif "warp" in o.properties:
                 map,target = o.properties["warp"].split("_")
-                self.warps.append({"rect":r,"map":map,"warptarget":target})
+                self.warps[o.name] = {"rect":r,"map":map,"warptarget":target,"direction":o.properties.get("direction","none")}
             elif "destination" in o.properties:
                 self.destinations[o.properties["destination"]] = r
             if "path" in o.properties:
@@ -539,7 +541,7 @@ class TileMap(Agent):
                 tile = self.collisions[y][x].collide_point(point,flags)
                 if tile:
                     return tile
-                for warp in self.warps:
+                for warp in self.warps.values():
                     r = warp["rect"]
                     if point[0]>=r.left and point[0]<=r.right and point[1]>=r.top and point[1]<=r.bottom:
                         return warp

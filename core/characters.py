@@ -239,7 +239,7 @@ class Player(Agent):
         #calculate inside collisions
         col0 = self.world.collide(self)
         
-        hit_horiz = False
+        vector = self.vector[:]
         if self.vector[0]:
             self.pos[0]+=self.vector[0]
             col1 = self.world.collide(self,"move")
@@ -248,7 +248,7 @@ class Player(Agent):
                     self.pos[0]=col1.rect().left-16
                 else:
                     self.pos[0]=col1.rect().right+16-1
-                hit_horiz = True
+                self.vector[0] = 0
             else:
                 self.facing = [self.vector[0]/abs(self.vector[0]),0]
                 self.moved = True
@@ -261,22 +261,13 @@ class Player(Agent):
                 else:
                     self.pos[1]=col2.rect().bottom+48
                     self.jumptime = -1
-                    if self.vector[1]<0:
-                        self.vector[1]=0
+                self.vector[1]=0
             else:
                 pass
                 #self.moved = True
                 
         
         hit_any = None
-        for col in col1,col2:
-            if col:
-                hit_any = col
-                if hasattr(col,"col") and hasattr(col,"spikes"):
-                    self.world.do_restart = True
-                if isinstance(col,dict):
-                    if "warptarget" in col:
-                        self.world.change_map(self,col["map"],col["warptarget"])
                         
         if hit_any:
             self.last_hit = hit_any
@@ -286,11 +277,24 @@ class Player(Agent):
         if self.moved:
             self.animating = True
             self.particles.active = True
-            self.particles.vector = [-self.vector[0],-self.vector[1]]
+            self.particles.vector = [-vector[0],-vector[1]]
             
-        if hit_horiz:
-            self.vector[0] = 0
         self.map.add_entity(self)
+        
+        for col in col1,col2:
+            if col:
+                hit_any = col
+                if hasattr(col,"col") and hasattr(col,"spikes"):
+                    self.world.do_restart = True
+                if isinstance(col,dict):
+                    if "warptarget" in col and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
+                        print self.mapname,col
+                        print self.world.events
+                        self.world.events.append(
+                        {"func":"change_map",
+                        "args":(self,col["map"],col["warptarget"],col["direction"])
+                        })
+                        break
     def say(self,text,actor=None,subjects=[]):
         if self.name != "erik":
             return
@@ -472,7 +476,7 @@ class Player(Agent):
             l.end[0]+=int(self.facing[0]*32)
             ob = self.world.collide_point(self,l.end,"move")
             #Maybe break here, maybe keep going
-            if ob:
+            if ob and hasattr(ob,"col"):
                 if ob.col=="trigger":
                     continue
                 if hasattr(ob,"hit"):
@@ -492,7 +496,7 @@ class Player(Agent):
             l.end[0]+=int(self.facing[0]*32)
             ob = self.world.collide_point(self,l.end,"move")
             #Maybe break here, maybe keep going
-            if ob:
+            if ob and hasattr(ob,"col"):
                 if ob.col=="trigger":
                     continue
                 if hasattr(ob,"push"):

@@ -18,6 +18,7 @@ class GameWorld(World):
     def start(self):
         self.do_restart = False
         self.objects = []
+        self.events = []
         
         self.maps = {}
         for map in ["room1","room2","room3","hubupgate","hubdowngate","hubleftgate","hubrightgate","hub"]:
@@ -89,18 +90,38 @@ class GameWorld(World):
         p.idle()
         self.add(p)
         return p
-    def change_map(self,character,map,target):
+    def process_events(self):
+        for e in self.events:
+            getattr(self,e["func"])(*e.get("args",[]),**e.get("kwargs",{}))
+        self.events = []
+    def change_map(self,character,map,target,direction=None):
         if map not in self.maps:
             print "NO MAP"
             return
-        if target not in self.maps[map].destinations:
+        if target not in self.maps[map].warps:
             print "NO 'DESTINATION'"
             return
+        character.following_points = []
+        warp = self.maps[map].warps[target]
+        target = warp["rect"]
+        amt = 16
+        if direction=="left":
+            character.pos = [target.left-amt,character.pos[1]-4]
+            print character,map,target
+            print "warp left"
+        elif direction=="right":
+            character.pos = [target.right+amt,character.pos[1]-4]
+            print "warp right"
+        elif direction=="up":
+            character.pos = [character.pos[0],target.top-amt]
+            print "warp up"
+        elif direction[1]=="down":
+            character.pos = [character.pos[0],target.bottom+amt]
+            print "warp down"
+        else:
+            character.pos = [target.left,target.top]
         character.mapname = map
         character.map = self.maps[map]
-        character.following_points = []
-        target = self.maps[map].destinations[target]
-        character.pos = [target.left,target.top]
         if character == self.camera_focus:
             self.map = self.maps[map]
             self.map_music()
@@ -137,6 +158,8 @@ class GameWorld(World):
         
         self.focus_camera()
         self.player.menu.pos = self.player.pos
+        
+        self.process_events()
         if self.do_restart:
             self.restart()
     def collide(self,agent,flags=None):

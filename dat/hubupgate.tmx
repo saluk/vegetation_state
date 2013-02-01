@@ -13,14 +13,10 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object x="97" y="-12" width="95" height="23">
+  <object name="A" x="97" y="-12" width="95" height="23">
    <properties>
+    <property name="direction" value="up"/>
     <property name="warp" value="room3_B"/>
-   </properties>
-  </object>
-  <object name="A" x="135" y="67" width="13" height="13">
-   <properties>
-    <property name="destination" value="A"/>
    </properties>
   </object>
   <object x="66" y="467" width="56" height="23">
