@@ -93,6 +93,9 @@ class Tile(Agent):
             free = self.layer.map.collide_point([x1,y],"move")
             if free:
                 return
+            free = self.layer.map.collide_point([x1,y],"trigger")
+            if free and hasattr(free,"spikes"):
+                return
             ground = self.layer.map.collide_point([x1,y2],"move")
             if not ground:
                 return
