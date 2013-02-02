@@ -44,6 +44,8 @@ class Agent(object):
         return [self]
     def init(self):
         pass
+    def on_kill(self):
+        pass
     def load(self,art=None):
         if not art:
             art = self.art

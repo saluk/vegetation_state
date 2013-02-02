@@ -6,6 +6,7 @@ from agents import Agent
 from particle import Particles
 from ui import Textbox,PopupText
 from aicontroller import AIController
+from tiles import FallingTiles
 import interactions
 
 class Laser(Agent):
@@ -150,6 +151,18 @@ class Player(Agent):
         self.quests = []
         
         self.topics = set([])
+    def start_death(self):
+        self.world.remove(self)
+        nt = FallingTiles()
+        nt.pos = self.pos
+        nt.graphic = self.surface
+        nt.surface = self.surface
+        nt.on_kill = self.on_kill
+        nt.v = [0,-5]
+        self.world.add(nt)
+    def on_kill(self):
+        """What to do when deleted from world"""
+        self.world.do_restart = True
     def click(self,world,controller):
         if self.name=="erik":
             self.mymenu()
@@ -286,7 +299,7 @@ class Player(Agent):
             if col:
                 hit_any = col
                 if hasattr(col,"col") and hasattr(col,"spikes"):
-                    self.world.do_restart = True
+                    self.start_death()
                 if isinstance(col,dict):
                     if "warptarget" in col: #and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
                         print self.mapname,col

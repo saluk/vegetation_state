@@ -15,12 +15,15 @@ class FallingTiles(Agent):
     def init(self):
         self.angm = random.randint(-3,3)
         self.ang = 0
-        self.a = [random.randint(-1,1),1]
+        self.a = [random.random()-0.5,1]
+        self.v = [0,0]
     def update(self,*args):
         self.surface = pygame.transform.rotate(self.graphic,self.ang)
         self.ang+=self.a[0]*3
-        self.pos[0]+=self.a[0]*3
-        self.pos[1]+=self.a[1]*3
+        self.v[0]+=self.a[0]*0.1
+        self.v[1]+=self.a[1]*0.1
+        self.pos[0]+=self.v[0]
+        self.pos[1]+=self.v[1]
         if self.pos[0]<0 or self.pos[0]>640 or self.pos[1]<0 or self.pos[1]>480:
             self.kill = 1
 
