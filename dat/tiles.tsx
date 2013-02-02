@@ -31,4 +31,10 @@
    <property name="losepower" value="shoot"/>
   </properties>
  </tile>
+ <tile id="137">
+  <properties>
+   <property name="col" value="trigger"/>
+   <property name="losepower" value="push"/>
+  </properties>
+ </tile>
 </tileset>

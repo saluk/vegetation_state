@@ -87,20 +87,30 @@ class Tile(Agent):
             y = self.pos[1]
             yabove = y-32
             y2 = y+32
-            topvine = self.layer.map.collide_point([x,yabove],"move")
-            if topvine and hasattr(topvine,"vines"):
+            
+            top = self.layer.map.collide_point([x,yabove],"move")
+            free1 = self.layer.map.collide_point([x1,y],"move")
+            free2 = self.layer.map.collide_point([x1,y],"trigger")
+            ground = self.layer.map.collide_point([x,y2],"move")
+            
+            if free1:
+                print "no free spot",x1//32,y//32
                 return
-            free = self.layer.map.collide_point([x1,y],"move")
-            if free:
+            if free2 and (hasattr(free2,"spikes") or hasattr(free2,"losepower")):
+                print "free spot has spikes"
                 return
-            free = self.layer.map.collide_point([x1,y],"trigger")
-            if free and hasattr(free,"spikes"):
+            
+            if ground and top:
+                print "attached above and below"
                 return
-            ground = self.layer.map.collide_point([x1,y2],"move")
-            if not ground:
+            if ground and hasattr(ground,"vines"):
+                print "our ground is vines"
                 return
+            if top and hasattr(top,"vines"):
+                print "our top is vines"
+                return
+
             free = self.layer.get_tile([x1//32,y//32])
-            print dir(free)
             free.vines = self.vines
             free.col = self.col
             free.index = self.index
