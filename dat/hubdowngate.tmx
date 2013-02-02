@@ -4,12 +4,17 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJytk0sKACAIREPC+x+5Fi0i5qPQYohU3hhazjFyK875Ki7lUxskj3iM0eW5XMVbxZFPtT8l1qfjqT6rPHZXNS7GeJWeVZ3btR88tw+I152tmyXjsNl29gX5u7/dmTNiOR57u/JENQvYiwlB
+   eJxjY2FgYCMTM6FhbGLEYlqYh+7OweY+YtxMrH3UNg+XOdQwj9ruGzVv8JtHalmCyxwAak0IQQ==
+  </data>
+ </layer>
+ <layer name="tileobs" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+OMUyat4oGAW0BF5UTnPo5mkD+VxQrA3FIMBFo7SuzYIbIwMAk08F1Q==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYCAPMBEpNpDmwTC1zCNGbDiahy0sKTEPn9hwMm80/VHHPOSwBACqGABN
+   eJxjYmBgYCITowNsYsQCWpiH7s7B5j5sYrjClpB91DYPlznUMA+buaPmDW/zSC1LcJkDAHTvAJ0=
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">

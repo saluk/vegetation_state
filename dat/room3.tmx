@@ -4,12 +4,12 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYKMBZsKCcYnjw/j0DBbzqO3fkWgeGxY+peYRmy7JNY9UswjZMxzNcwZiFyimhnkA2QUI0g==
+   eJxjY2FgYKMBZsKCcYnjw/j0DBbzqO3fkWgeGxY+peYRmy7JNY9UswjZMxzNcwZiFyimRjwBAN1lCO4=
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYMANmMjA+AAheVLBqHmj5tHaPHLTOjn2DEfzcIUXueYBAMwQAEk=
+   eJxjYMANmMjA+AAheVLBqHmj5tHaPHLTOjn2DEfzcIUXueUIAM5AAFc=
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
@@ -43,12 +43,12 @@
     <property name="warp" value="hubupgate_TR"/>
    </properties>
   </object>
-  <object name="R2" x="269" y="404" width="32" height="32">
+  <object name="R2" x="303" y="-84" width="32" height="32">
    <properties>
     <property name="destination" value="R2"/>
    </properties>
   </object>
-  <object name="warpR2" x="233" y="473" width="182" height="24">
+  <object name="warpR2" x="241" y="-30" width="182" height="24">
    <properties>
     <property name="warp" value="hubupgate_TL"/>
    </properties>

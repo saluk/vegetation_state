@@ -4,12 +4,17 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYINiJiSMzicW4zKLHPPYCJhHqpnY9LGRaR4hfaSaSUg9qe6kt3mkmjmU1FHDTHqZhy6ODRMyazCbBwAqTAjl
+   eJxjY2FgYINiJiTMRgAz4cD4zMKlh5BZtDQPl1mEzMcXHrjMIybcyHHLqHm0NQ9f/LKhqR9o8wjlW3xpcyiYBwAW7AjN
+  </data>
+ </layer>
+ <layer name="tileobs" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh4sIplcJrnRWV3jYJRQAzgGk13OAEAoQoBuQ==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYIJiZIDOJxbgMosc85gY8JtHqpnY9DHhECfFLGz6SDWTkHpS3Ulv80g1cyipo4aZ9DIPXRwbJmTWYDYPANTnAO8=
+   eJxjYmBgYIJiZMBEAOMC+MwiFeCyj5rm4TKLkPn4wgOXecSEGzluGTWPtubhi18mNPUDbR6hfIsvbQ4F8wDLNwDj
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
@@ -53,12 +58,12 @@
     <property name="warp" value="room3_R1"/>
    </properties>
   </object>
-  <object name="warpTL" x="231" y="-23" width="198" height="28">
+  <object name="warpTL" x="172" y="-129" width="198" height="28">
    <properties>
     <property name="warp" value="room3_R2"/>
    </properties>
   </object>
-  <object name="TL" x="271" y="44" width="13" height="13">
+  <object name="TL" x="215" y="-87" width="13" height="13">
    <properties>
     <property name="destination" value="TL"/>
    </properties>
