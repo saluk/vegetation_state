@@ -158,6 +158,9 @@ class Player(Agent):
     def power(self,name):
         if name in self.powers:
             getattr(self,"power_"+name)()
+    def losepower(self,name):
+        if name in self.powers:
+            self.powers.remove(name)
     def start_death(self):
         self.world.remove(self)
         nt = FallingTiles()
@@ -307,6 +310,8 @@ class Player(Agent):
                 hit_any = col
                 if hasattr(col,"col") and hasattr(col,"spikes"):
                     self.start_death()
+                if hasattr(col,"col") and hasattr(col,"losepower"):
+                    self.losepower(col.losepower)
                 if isinstance(col,dict):
                     if "warptarget" in col: #and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
                         print self.mapname,col

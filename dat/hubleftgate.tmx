@@ -23,5 +23,10 @@
     <property name="destination" value="R"/>
    </properties>
   </object>
+  <object x="629" y="265" width="21" height="75">
+   <properties>
+    <property name="warp" value="hub_L"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
