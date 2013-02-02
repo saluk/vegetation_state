@@ -217,13 +217,13 @@ class GameWorld(World):
             player_move = False
         if player_move:
             if controller.shoot:
-                self.player.shoot()
+                self.player.power("shoot")
             if controller.grow:
-                self.player.grow()
+                self.player.power("grow")
             if controller.grow2:
-                self.player.growhoriz()
+                self.player.power("spread")
             if controller.push:
-                self.player.shootpush()
+                self.player.power("push")
             if controller.left:
                 self.player.left()
                 self.player.assign_ai(active=False)

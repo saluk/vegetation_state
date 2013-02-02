@@ -57,10 +57,14 @@ class WaterDrop(Agent):
             n = 3
             while y>=0 and n:
                 n-=1
-                ncol = col.layer.tiles[y][x]
-                ncol2 = col.layer.map.collisions[y][x]
-                if ncol.col or ncol2.col:
+                ncol = None
+                for p in [(x*32,y*32),(x*32+31,y*32),(x*32+31,y*32+31),(x*32,y*32+31)]:
+                    ncol = self.world.collide_point(self,p,"move")
+                    if ncol and ncol.col:
+                        break
+                if ncol and ncol.col:
                     break
+                ncol = col.layer.tiles[y][x]
                 ncol.pos = [x*32,y*32]
                 ncol.index = col.index
                 ncol.vines = col.vines
@@ -89,7 +93,6 @@ class HorizWaterDrop(Agent):
             lefttile = self.world.collide_point(self,[left*32,y*32],"move")
             righttile = self.world.collide_point(self,[right*32,y*32],"move")
             if lefttile and lefttile.col:
-                print "right",lefttile,lefttile.col
                 dir=1
             elif righttile and righttile.col:
                 dir=-1
@@ -97,14 +100,12 @@ class HorizWaterDrop(Agent):
                 return
             n = 3
             while x>=0 and x<len(col.layer.tiles[y]) and n:
-                print x,n,len(col.layer.tiles[y])
                 x+=dir
-                print x
                 n-=1
-                ncol = col.layer.tiles[y][x]
-                ncol2 = col.layer.map.collisions[y][x]
-                if ncol.col or ncol2.col:
+                ncol = self.world.collide_point(self,[x*32+16,y*32+16],"move")
+                if ncol and ncol.col:
                     break
+                ncol = col.layer.tiles[y][x]
                 ncol.pos = [x*32,y*32]
                 ncol.index = col.index
                 ncol.vines = col.vines
@@ -151,6 +152,12 @@ class Player(Agent):
         self.quests = []
         
         self.topics = set([])
+        
+        self.powers = ["shoot","grow","spread","push"]
+        self.col = "full"
+    def power(self,name):
+        if name in self.powers:
+            getattr(self,"power_"+name)()
     def start_death(self):
         self.world.remove(self)
         nt = FallingTiles()
@@ -478,7 +485,7 @@ class Player(Agent):
         
         
 
-    def shoot(self):
+    def power_shoot(self):
         if self.laser:
             return
         l = Laser()
@@ -498,7 +505,7 @@ class Player(Agent):
                 break
         self.world.add(l)
 
-    def shootpush(self):
+    def power_push(self):
         if self.laser:
             return
         l = PushLaser()
@@ -518,7 +525,7 @@ class Player(Agent):
                 break
         self.world.add(l)
 
-    def grow(self):
+    def power_grow(self):
         if self.water:
             return
         self.water = WaterDrop()
@@ -527,7 +534,7 @@ class Player(Agent):
         self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]
         self.world.add(self.water)
         
-    def growhoriz(self):
+    def power_spread(self):
         if self.water:
             return
         self.water = HorizWaterDrop()
