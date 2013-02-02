@@ -9,7 +9,7 @@
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BgQRYLAwMXC4RNLj2UzBsF5AMAsNgCmw==
+   eJxjYBgFo2BgQRYLAwMXC4RNLA0DWmh8Ss2jh/tGAfkAALyYAqM=
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
