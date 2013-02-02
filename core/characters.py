@@ -265,6 +265,7 @@ class Player(Agent):
             else:
                 pass
                 #self.moved = True
+        trigger = self.world.collide(self,"trigger")
                 
         
         hit_any = None
@@ -281,7 +282,7 @@ class Player(Agent):
             
         self.map.add_entity(self)
         
-        for col in col1,col2:
+        for col in col1,col2,trigger:
             if col:
                 hit_any = col
                 if hasattr(col,"col") and hasattr(col,"spikes"):

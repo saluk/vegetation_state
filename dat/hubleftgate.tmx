@@ -7,17 +7,17 @@
    eJxjY2FgYANiJihmQ8JMaBiXOLo+dHXEmI8ujs0sbHbgwoTchM/t2PxKyAxS/IIrbIgJY0J243MHPnWkhi+1MCn+GQ6YnmFKjlpy0jI+vYT8TmrYAQAYiglR
   </data>
  </layer>
+ <layer name="tileobs" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BgQRYLAwMXC4RNLj2UzBsF5AMAsNgCmw==
+  </data>
+ </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo4B4wERlPNLAaPhRBgCO0ABR
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="warpR" x="632" y="260" width="17" height="91">
-   <properties>
-    <property name="warp" value="hub_L"/>
-   </properties>
-  </object>
   <object name="R" x="579" y="320" width="20" height="20">
    <properties>
     <property name="destination" value="R"/>

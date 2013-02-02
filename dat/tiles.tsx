@@ -25,4 +25,10 @@
    <property name="vines" value="horiz"/>
   </properties>
  </tile>
+ <tile id="105">
+  <properties>
+   <property name="col" value="trigger"/>
+   <property name="losepower" value="shoot"/>
+  </properties>
+ </tile>
 </tileset>

@@ -61,6 +61,8 @@ class Tile(Agent):
     def collide_point(self,point,flags=None):
         if not self.col:
             return
+        if self.col=="trigger" and flags!="trigger":
+            return
         top = self.pos[1]
         left = self.pos[0]
         right = self.pos[0]+31
@@ -536,9 +538,10 @@ class TileMap(Agent):
                 t = Tile()
                 t.pos = [x*32,y*32]
                 t.col = "full"
+                t.nothing = True
                 return t
             col = 0
-            if flags=="move":
+            if flags=="move" or flags=="trigger":
                 for layer in reversed(self.map):
                     tile = layer.tiles[y][x].collide_point(point,flags)
                     if tile:
@@ -546,10 +549,11 @@ class TileMap(Agent):
                 tile = self.collisions[y][x].collide_point(point,flags)
                 if tile:
                     return tile
-                for warp in self.warps.values():
-                    r = warp["rect"]
-                    if point[0]>=r.left and point[0]<=r.right and point[1]>=r.top and point[1]<=r.bottom:
-                        return warp
+                if flags=="trigger":
+                    for warp in self.warps.values():
+                        r = warp["rect"]
+                        if point[0]>=r.left and point[0]<=r.right and point[1]>=r.top and point[1]<=r.bottom:
+                            return warp
             if flags=="frobme":
                 for frober in self.frobers:
                     if frober.collide_point(point,flags):
