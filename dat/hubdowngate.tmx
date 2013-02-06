@@ -4,7 +4,7 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYCMTM6FhbGLEYlqYh+7OweY+YtxMrH3UNg+XOdQwj9ruGzVv8JtHalmCyxwAak0IQQ==
+   eJxjY2FgYCMTM6FhbGLEYlqYh+7OweY+YtxMrH20NI+YuB9I91HDPGLT0Kh55JlHalmCyxwAha0ITQ==
   </data>
  </layer>
  <layer name="tileobs" width="20" height="15">
@@ -14,7 +14,7 @@
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYCITowNsYsQCWpiH7s7B5j5sYrjClpB91DYPlznUMA+buaPmDW/zSC1LcJkDAHTvAJ0=
+   eJxjYBgFo2AUjIKhAQAEsAAB
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">

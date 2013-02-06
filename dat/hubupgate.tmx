@@ -14,7 +14,7 @@
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYIJiZMBEAOMC+MwiFeCyj5rm4TKLkPn4wgOXecSEGzluGTWPtubhi18mNPUDbR6hfIsvbQ4F8wDLNwDj
+   eJxjYBgFo2AUjIKhAQAEsAAB
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">

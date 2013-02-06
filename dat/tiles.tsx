@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="tiles" tilewidth="32" tileheight="32">
  <image source="../art/tiles/tiles.png" width="1024" height="1024"/>
+ <tile id="2">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="3">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="4">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="5">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
  <tile id="9">
   <properties>
    <property name="col" value="full"/>
    <property name="vines" value="weak"/>
+  </properties>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="col" value="full"/>
   </properties>
  </tile>
  <tile id="41">
@@ -17,6 +47,21 @@
   <properties>
    <property name="col" value="trigger"/>
    <property name="spikes" value=""/>
+  </properties>
+ </tile>
+ <tile id="66">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="67">
+  <properties>
+   <property name="col" value="full"/>
+  </properties>
+ </tile>
+ <tile id="68">
+  <properties>
+   <property name="col" value="full"/>
   </properties>
  </tile>
  <tile id="73">
