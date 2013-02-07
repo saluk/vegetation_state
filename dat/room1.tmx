@@ -14,7 +14,7 @@
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDDXgxUKePi4y9aHbh80ccs0mBQAAkCQAxw==
+   eJxjYBgFo2AU0AJwsdDObC8yzSbXTej2YTOHlv6FAQCiuADV
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">

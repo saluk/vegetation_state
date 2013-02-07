@@ -123,10 +123,10 @@ class Tile(Agent):
             to_erase = []
             while y>-1:
                 t = self.layer.tiles[y][x]
-                col = self.layer.map.collisions[y][x]
+                col = self.layer.map.collide_point([x*32+16,y*32+16],"move")
                 if hasattr(t,"vines"):
                     to_erase.append(t)
-                elif col.col:
+                elif col and col.col:
                     to_erase = []
                     break
                 else:
@@ -136,10 +136,10 @@ class Tile(Agent):
             y = self.pos[1]//32+1
             while y<len(self.layer.tiles):
                 t = self.layer.tiles[y][x]
-                col = self.layer.map.collisions[y][x]
+                col = self.layer.map.collide_point([x*32+16,y*32+16],"move")
                 if hasattr(t,"vines"):
                     to_erase2.append(t)
-                elif not col.col:
+                elif not col or not col.col:
                     to_erase.extend(to_erase2)
                     break
                 else:
