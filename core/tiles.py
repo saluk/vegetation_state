@@ -164,6 +164,18 @@ class Tile(Agent):
         if self.layer:
             #self.layer.tiles[self.pos[1]//32][self.pos[0]//32] = t = Tile()
             #t.layer = self.layer
+            if hasattr(self,"door"):
+                del self.door
+                x = self.pos[0]//32
+                y = self.pos[1]//32
+                if y-1>-1:
+                    t = self.layer.tiles[y-1][x]
+                    if hasattr(t,"door"):
+                        t.erase()
+                if y+1<len(self.layer.tiles):
+                    t = self.layer.tiles[y+1][x]
+                    if hasattr(t,"door"):
+                        t.erase()
             self.index = -1
             self.set_surface()
             if hasattr(self,"vines"):

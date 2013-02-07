@@ -14,7 +14,7 @@
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0AJwsdDObC8yzSbXTej2YTOHlv6FAQCiuADV
+   eJxjYBgF9ADdLCPLPHJBzyBxBzUAFw394kWm2fjclA2Vy8GiBt0+bOagi2XTwP8AfmUEYA==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
@@ -23,7 +23,7 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="playerspawn1" x="63" y="251" width="32" height="32"/>
+  <object name="playerspawn" x="63" y="251" width="32" height="32"/>
   <object name="warpA" x="628" y="384" width="32" height="60">
    <properties>
     <property name="warp" value="room2_A"/>

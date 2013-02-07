@@ -131,6 +131,8 @@ class Player(Agent):
         self.laser = None
         self.water = None
         
+        self.has_key = ""
+        
         self.jumptime = 0
         
         self.particles = Particles()
@@ -253,6 +255,11 @@ class Player(Agent):
         for p in self.aicontroller.following_points:
             pygame.draw.rect(engine.surface,[255,0,255],[[p[0]-offset[0],p[1]-offset[1]],[2,2]])
         #engine.surface.blit(engine.font.render(self.aicontroller.state,1,[255,0,0]),[self.pos[0]-offset[0],self.pos[1]-offset[1]])
+        if self.has_key:
+            color = [230,190,255] #purple
+            if self.has_key=="orange":
+                color = [255,168,0]
+            pygame.draw.circle(engine.surface,color,[int(self.pos[0]-offset[0]),int(self.pos[1]-offset[1]-48)],10)
     def walk(self):
         self.map.remove_entity(self)
         
@@ -312,6 +319,12 @@ class Player(Agent):
                     self.start_death()
                 if hasattr(col,"col") and hasattr(col,"losepower"):
                     self.losepower(col.losepower)
+                if hasattr(col,"key") and not self.has_key:
+                    self.has_key = col.key
+                    col.erase()
+                if hasattr(col,"door") and self.has_key==col.door:
+                    self.has_key = ""
+                    col.erase()
                 if isinstance(col,dict):
                     if "warptarget" in col: #and (col["direction"]=="left" and vector[0]<0 or col["direction"]=="right" and vector[0]>0 or col["direction"]=="up" and vector[1]<0 or col["direction"]=="down" and vector[1]>0 or col["direction"]=="none"):
                         print self.mapname,col

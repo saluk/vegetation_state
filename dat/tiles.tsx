@@ -76,10 +76,34 @@
    <property name="losepower" value="shoot"/>
   </properties>
  </tile>
+ <tile id="106">
+  <properties>
+   <property name="col" value="full"/>
+   <property name="door" value="purple"/>
+  </properties>
+ </tile>
+ <tile id="107">
+  <properties>
+   <property name="col" value="trigger"/>
+   <property name="key" value="purple"/>
+  </properties>
+ </tile>
  <tile id="137">
   <properties>
    <property name="col" value="trigger"/>
    <property name="losepower" value="push"/>
+  </properties>
+ </tile>
+ <tile id="138">
+  <properties>
+   <property name="col" value="full"/>
+   <property name="door" value="orange"/>
+  </properties>
+ </tile>
+ <tile id="139">
+  <properties>
+   <property name="col" value="trigger"/>
+   <property name="key" value="orange"/>
   </properties>
  </tile>
  <tile id="169">

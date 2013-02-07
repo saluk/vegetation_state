@@ -43,6 +43,5 @@
     <property name="destination" value="B"/>
    </properties>
   </object>
-  <object name="playerspawn" x="88" y="412" width="32" height="32"/>
  </objectgroup>
 </map>
