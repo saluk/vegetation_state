@@ -67,6 +67,8 @@ class Tile(Agent):
             return
         if self.col=="trigger" and flags!="trigger":
             return
+        if self.col!="trigger" and flags=="trigger":
+            return
         top = self.pos[1]
         left = self.pos[0]
         right = self.pos[0]+31
@@ -94,6 +96,9 @@ class Tile(Agent):
             free2 = self.layer.map.collide_point([x1,y],"trigger")
             ground = self.layer.map.collide_point([x,y2],"move")
             
+            freeground1 = self.layer.map.collide_point([x1,y2],"move")
+            freeground2 = self.layer.map.collide_point([x1,y2],"trigger")
+            
             if free1:
                 print "no free spot",x1//32,y//32
                 return
@@ -109,6 +114,11 @@ class Tile(Agent):
                 return
             if top and hasattr(top,"vines"):
                 print "our top is vines"
+                return
+            
+            print freeground1,freeground2
+            if not freeground1 or freeground2:
+                print "our new ground is not valid"
                 return
 
             free = self.layer.get_tile([x1//32,y//32])
