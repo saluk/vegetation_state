@@ -9,7 +9,7 @@
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BgQRYLAwMXC4RNLA0DWmh8Ss2jh/tGAfkAALyYAqM=
+   eJxjYBgFo2BgQRYLAwMXC4RNLA0DWmh8Ss2j1H3oAJv7RgH5AACpXAKV
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
@@ -38,5 +38,6 @@
     <property name="warp" value="hubleftgate2_R"/>
    </properties>
   </object>
+  <object name="playerspawn" x="584" y="300" width="28" height="19"/>
  </objectgroup>
 </map>

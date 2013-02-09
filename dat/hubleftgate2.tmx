@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="55" height="54" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="collisions.tsx"/>
  <tileset firstgid="1025" source="tiles.tsx"/>
- <layer name="floor1" width="20" height="15">
+ <layer name="floor1" width="55" height="54">
   <data encoding="base64" compression="zlib">
-   eJxjYmFgYBrFo3gUDznMNgLNAwCRgAcZ
+   eJztmOsKgzAMhWWI7//IY/+GJM3ttE1KAkXmtPbLyaV6XXnsubEjk/3W8wGNZltnzdZszbbOtGz/df5ENom5IttIr+euqZsUh+//qrBJuUXFaSU2a5yewMZpWoHNkmPV2KSaX72/nc7Gxevo+kxm7V8n6Pbm0fa7TNbvAc3WbOus2c5go74Va7kqsJ2sW5QtyzcUal8VYUOOrGyjc9y96Py11IsRz4hNE/Mz3uOt9VDLyZ17P0/SGsUW5ePYqN/UkeKOskX10uhmYULmG4qN4/POETXPOkb3IOIb1RM9fUejWRa2GfEY0W9nTFpzzVOLq7BF5oowZmWj9F7JZq01njmlZ3nrnofDy4bWPLIWy3xIH2dj2zWardmysc3w1cz6sJtHqoU7aiaCkdsfWPYY3j5t8ZPVn4j9LdLQPvoCELQtwQ==
   </data>
  </layer>
- <layer name="tileobs" width="20" height="15">
+ <layer name="tileobs" width="55" height="54">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BgQRYLAwMXC4RNLA0DWmh8Ss2jh/tGAfkAALyYAqM=
+   eJzt18kNgCAURVEWrCxFO7EV7USLNsSFSsCB8GW6JyEsNMrLRwSlAABAThadegRyyFYmspWp5myoy8pczdJMXQAAjRn59wFZ6PXRnu6TMgg92x6zL4NkNql32DWz6/i2rjHEXs99dfP1JXHVye7/qtsbUt+mBDPWc7u7dpeL/QmAEJ2+NiA15iHwXa37wKnSXAbZdi2s+a4zXUnn1VAbvzoPiQ==
   </data>
  </layer>
- <layer name="COLLISIONS" width="20" height="15">
+ <layer name="COLLISIONS" width="55" height="54">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhAQAEsAAB
+   eJztwTEBAAAAwqD1T+1pCaAAAAAAAAAAAAAAAOAGLmgAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="20" height="15">
-  <object name="R" x="579" y="320" width="20" height="20">
+ <objectgroup name="spawns" width="55" height="54">
+  <object name="R" x="1699" y="1568" width="20" height="20">
    <properties>
     <property name="destination" value="R"/>
    </properties>
   </object>
-  <object x="629" y="265" width="21" height="75">
-   <properties>
-    <property name="warp" value="hubleftgate_L"/>
-   </properties>
-  </object>
+  <object name="playerspawn" x="1423" y="1576" width="26" height="20"/>
  </objectgroup>
 </map>
