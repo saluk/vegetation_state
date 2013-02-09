@@ -24,7 +24,7 @@ class FallingTiles(Agent):
         self.v[1]+=self.a[1]*0.1
         self.pos[0]+=self.v[0]
         self.pos[1]+=self.v[1]
-        if self.pos[0]<0 or self.pos[0]>640 or self.pos[1]<0 or self.pos[1]>480:
+        if self.pos[0]<0 or self.pos[0]>self.world.map.rect().width or self.pos[1]<0 or self.pos[1]>self.world.map.rect().height:
             self.kill = 1
 
 class Tile(Agent):
@@ -178,7 +178,7 @@ class Tile(Agent):
                     t = self.layer.tiles[y+1][x]
                     if hasattr(t,"door"):
                         t.erase()
-            self.index = 0
+            self.index = -1
             self.set_surface()
             if hasattr(self,"vines"):
                 del self.vines
