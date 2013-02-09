@@ -4,7 +4,7 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYANiJihmQ8JMaBiXOLo+dHXEmI8ujs0sbHbgwoTchM/t2PxKyAxS/IIrbIgJY0J243MHPnWkhi+1MCn+GQ6YnmFKjlpy0jI+vYT8TmrYAQAYiglR
+   eJxjYmFgYBrFo3gUDznMNgLNAwCRgAcZ
   </data>
  </layer>
  <layer name="tileobs" width="20" height="15">
@@ -25,17 +25,7 @@
   </object>
   <object x="629" y="265" width="21" height="75">
    <properties>
-    <property name="warp" value="hub_L"/>
-   </properties>
-  </object>
-  <object name="L" x="39" y="315" width="20" height="20">
-   <properties>
-    <property name="destination" value="L"/>
-   </properties>
-  </object>
-  <object x="-14" y="265" width="21" height="75">
-   <properties>
-    <property name="warp" value="hubleftgate2_R"/>
+    <property name="warp" value="hubleftgate_L"/>
    </properties>
   </object>
  </objectgroup>

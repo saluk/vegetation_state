@@ -21,7 +21,7 @@ class GameWorld(World):
         self.events = []
         
         self.maps = {}
-        for map in ["room1","room2","room3","hubupgate","hubdowngate","hubleftgate","hubrightgate","hub"]:
+        for map in ["room1","room2","room3","hubupgate","hubdowngate","hubleftgate","hubrightgate","hub","hubleftgate2"]:
             self.maps[map] = TileMap()
             self.maps[map].name = map
             self.maps[map].mapname = map
