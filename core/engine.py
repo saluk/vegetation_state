@@ -72,7 +72,6 @@ class Engine:
                 self.next_tick -= 1
                 self.world.update()
     def play_music(self,music):
-        return
         if android:
             return
         if music==self.music_playing:
