@@ -54,6 +54,7 @@ class Tile(Agent):
         return self.index==-1
     def set_surface(self):
         self.surface = self.layer.tileset_list[self.index]
+        self.graphic = self.surface
     def draw(self,engine,offset):
         super(Tile,self).draw(engine,offset)
         if hasattr(self,"chest"):
@@ -82,7 +83,7 @@ class Tile(Agent):
             return self
     def push(self,agent,laser,dirv):
         if hasattr(self,"vines"):
-            x = self.pos[0]
+            x = int(self.pos[0])
             x1 = x+int(dirv)*32
             y = self.pos[1]
             yabove = y-32
@@ -115,6 +116,7 @@ class Tile(Agent):
             free.col = self.col
             free.index = self.index
             free.surface = self.surface
+            self.layer.cache_surface = None
             self.erase()
     def hit(self,agent,laser):
         if hasattr(self,"vines") and self.vines=="weak":
@@ -147,14 +149,14 @@ class Tile(Agent):
                 y+=1
             for t in [self]+to_erase:
                 falling = FallingTiles()
-                falling.pos = t.pos
+                falling.pos = t.pos[:]
                 surf = pygame.Surface([32,32]).convert_alpha()
                 surf.fill([0,0,0,0])
                 s = self.layer.map.world.engine.surface
                 self.layer.map.world.engine.surface = surf
                 t.pos = [0,0]
                 t.draw(self.layer.map.world.engine,[0,0])
-                t.pos = falling.pos
+                t.pos = falling.pos[:]
                 self.layer.map.world.engine.surface = s
                 falling.graphic = surf
                 falling.surface = falling.graphic
@@ -176,7 +178,7 @@ class Tile(Agent):
                     t = self.layer.tiles[y+1][x]
                     if hasattr(t,"door"):
                         t.erase()
-            self.index = -1
+            self.index = 0
             self.set_surface()
             if hasattr(self,"vines"):
                 del self.vines
