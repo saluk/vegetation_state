@@ -110,7 +110,7 @@ class Radial(Agent):
 
 class Textbox(Agent):
     def init(self):
-        self.font = "chaucer"
+        self.font = "bigfont"
         self.lines = [Text(),Text(),Text()]
         self.text = self.lines[0]
         for l in self.lines:

@@ -335,7 +335,7 @@ class Player(Agent):
                         })
                         break
     def say(self,text,actor=None,subjects=[]):
-        if self.name != "erik":
+        if self.name != "stickman":
             return
         for s in subjects:
             s.speaking = True
