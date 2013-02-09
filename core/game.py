@@ -78,7 +78,7 @@ class GameWorld(World):
         self.player.menu.layer = 10
         self.player.menu.pos = self.player.pos
         self.add(self.player.menu)
-        
+        self.player.say_many(["VEGETATION STATE: Demo","<- -> to move","z - jump; x - shoot; v - push; c - vertical growth; a - horizontal growth","r - restart"],self.player)
     def add_character(self,mapname,sprite,pos,direction):
         p = Player()
         p.mapname = mapname
@@ -200,8 +200,10 @@ class GameWorld(World):
         self.player.idle()
         player_move = True
         if self.player.texter:
-            if self.player.texter.finished and (controller.action or controller.menu):
+            if self.player.texter.finished and (controller.jump or controller.menu):
                 self.player.texter.end(self)
+                controller.reset_all()
+                return
             player_move = False
         elif self.player.menu.visible:
             if controller.left:
@@ -238,19 +240,19 @@ class GameWorld(World):
                 controller.reset_all()
                 self.player.mymenu()
                 self.player.assign_ai(active=False)
-        if controller.mbdown:
-            x = controller.mpos[0]+self.offset[0]
-            y = controller.mpos[1]+self.offset[1]
-            for o in reversed(self.sprites):
-                r = o.rect()
-                if hasattr(o,"click") and x>=r.left and x<=r.right and y>=r.top and y<=r.bottom:
-                    o.click(self,controller)
-                    return
-            for o in reversed(self.objects):
-                r = o.rect()
-                if hasattr(o,"click") and x>=r.left and x<=r.right and y>=r.top and y<=r.bottom:
-                    o.click(self,controller)
-                    return
+        #~ if controller.mbdown:
+            #~ x = controller.mpos[0]+self.offset[0]
+            #~ y = controller.mpos[1]+self.offset[1]
+            #~ for o in reversed(self.sprites):
+                #~ r = o.rect()
+                #~ if hasattr(o,"click") and x>=r.left and x<=r.right and y>=r.top and y<=r.bottom:
+                    #~ o.click(self,controller)
+                    #~ return
+            #~ for o in reversed(self.objects):
+                #~ r = o.rect()
+                #~ if hasattr(o,"click") and x>=r.left and x<=r.right and y>=r.top and y<=r.bottom:
+                    #~ o.click(self,controller)
+                    #~ return
         if controller.quit:
             self.quit()
     def quit(self):
