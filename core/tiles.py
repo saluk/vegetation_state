@@ -109,7 +109,7 @@ class Tile(Agent):
             if ground and top:
                 print "attached above and below"
                 return
-            if ground and hasattr(ground,"vines"):
+            if ground and hasattr(ground,"vines") and ground.vines!="horiz":
                 print "our ground is vines"
                 return
             if top and hasattr(top,"vines"):
