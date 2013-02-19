@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="known_powers" value="shoot"/>
+  <property name="possible_powers" value="grow, spread"/>
+ </properties>
  <tileset firstgid="1" source="collisions.tsx"/>
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYKMDZiJRHFl+JGFahj+5dhJSh88sbOLk+hWXPZTaQaxeQv4kNf0jm4XNbHxxRY5/0e0jZBaleZOcuMRnPkgMAKtqCbk=
+   eJxjYmFgYBrFo3gUj+IhgAGJwAcJ
   </data>
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBg6gIuFgUGLBbscLnEY6MIiz0VADznmIbsDHxvdvdjMGwWjYBSgAgDGGgMX
+   eJxjY2FgYKESZkViUwOoUsmcoWSeCxKmhnnKUHNwxQkp9iGbRwg4o/kFm/mkmIcOsPmHEvOwgZFkHih+2Cg0Dzmu2aDYGUfco6cNbJgNCwYAGrkLXQ==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
@@ -20,7 +24,7 @@
  <objectgroup name="spawns" width="20" height="15">
   <object name="warpL" x="-15" y="67" width="24" height="89">
    <properties>
-    <property name="warp" value="hub_R"/>
+    <property name="warp" value="hubrightgate_R"/>
    </properties>
   </object>
   <object name="L" x="52" y="128" width="24" height="20">
@@ -28,15 +32,6 @@
     <property name="destination" value="L"/>
    </properties>
   </object>
-  <object name="warpR" x="624" y="66" width="24" height="89">
-   <properties>
-    <property name="warp" value="hubrightgate2_L"/>
-   </properties>
-  </object>
-  <object name="R" x="571" y="123" width="24" height="20">
-   <properties>
-    <property name="destination" value="R"/>
-   </properties>
-  </object>
+  <object name="playerspawn" x="59" y="110" width="30" height="20"/>
  </objectgroup>
 </map>

@@ -38,6 +38,5 @@
     <property name="warp" value="hubleftgate2_R"/>
    </properties>
   </object>
-  <object name="playerspawn" x="584" y="300" width="28" height="19"/>
  </objectgroup>
 </map>
