@@ -125,7 +125,7 @@ class Player(Agent):
         self.frame = 0
         self.anim = None
         self.animating = False
-        self.horiz_accel = 0.2
+        self.horiz_accel = 0.12
         self.a = [0,0]
         self.vector = [0,0]
         self.laser = None
@@ -442,7 +442,7 @@ class Player(Agent):
     def physics(self):
         mx = 5
         my = 10
-        damp = 1
+        damp = 0.5
         if self.a[0]!=0:
             self.vector[0]+=self.a[0]
             if self.vector[0]<-mx:

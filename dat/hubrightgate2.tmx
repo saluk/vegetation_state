@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="20" height="35" tilewidth="32" tileheight="32">
  <properties>
   <property name="known_powers" value="shoot"/>
   <property name="possible_powers" value="grow, spread"/>
  </properties>
  <tileset firstgid="1" source="collisions.tsx"/>
  <tileset firstgid="1025" source="tiles.tsx"/>
- <layer name="floor1" width="20" height="15">
+ <layer name="floor1" width="20" height="35">
   <data encoding="base64" compression="zlib">
-   eJxjYmFgYBrFo3gUj+IhgAGJwAcJ
+   eJztwwEJAAAMA6Ax3j/zehwFe0lVVfXpAd7HEGk=
   </data>
  </layer>
- <layer name="tileobs" width="20" height="15">
+ <layer name="tileobs" width="20" height="35">
   <data encoding="base64" compression="zlib">
-   eJxjY2FgYKESZkViUwOoUsmcoWSeCxKmhnnKUHNwxQkp9iGbRwg4o/kFm/mkmIcOsPmHEvOwgZFkHih+2Cg0Dzmu2aDYGUfco6cNbJgNCwYAGrkLXQ==
+   eJztlGEKwjAMhYfE/Og1xD/1GO6XZ/Emu7QU9yA+k26dZTDwwaOsab4mNExlGLSzxRgSaffZ4XhK8r0mJ+e6wIGyfK6FlX/gcS3Z8NTEIp7NR2+8BxbzRmOVNt5J3kZe4V1MjHk635PMneh3nFnPgBf1i/worh146uS08NbK40Wz2srDW0WzuoXXWp89h3mz/aK+LTy88138/VvF9lwPL/G4du7XfkdvVc5MHXioKVd4rHwgHmsvXk2W96Ac/PszzUttftnMw7p2PqOZtbzkxFhTEDsSL+3Ai5h/3nre0twyL/ILQvogag==
   </data>
  </layer>
- <layer name="COLLISIONS" width="20" height="15">
+ <layer name="COLLISIONS" width="20" height="35">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhAQAEsAAB
+   eJztwQENAAAAwqD3T20PBxQAAPwaCvAAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="20" height="15">
-  <object name="warpL" x="-15" y="67" width="24" height="89">
+ <objectgroup name="spawns" width="20" height="35">
+  <object name="warpL" x="-15" y="99" width="24" height="89">
    <properties>
     <property name="warp" value="hubrightgate_R"/>
    </properties>
   </object>
-  <object name="L" x="52" y="128" width="24" height="20">
+  <object name="L" x="52" y="160" width="24" height="20">
    <properties>
     <property name="destination" value="L"/>
    </properties>
   </object>
-  <object name="playerspawn" x="59" y="110" width="30" height="20"/>
+  <object name="playerspawn" x="96" y="128" width="30" height="20"/>
  </objectgroup>
 </map>
