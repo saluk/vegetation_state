@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="40" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="20" height="44" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="collisions.tsx"/>
  <tileset firstgid="1025" source="tiles.tsx"/>
- <layer name="floor1" width="20" height="40">
+ <layer name="floor1" width="20" height="44">
   <data encoding="base64" compression="zlib">
-   eJztzLENAAAEADAR8f/JriCGDl2bFZEAAEv6+QfcGnu7Esk=
+   eJztzLEJAEAIwEAR+f1H/iFEsbjAtYlQpywAgDnv+A/Y9QF8+xLJ
   </data>
  </layer>
- <layer name="tileobs" width="20" height="40">
+ <layer name="tileobs" width="20" height="44">
   <data encoding="base64" compression="zlib">
-   eJzllmEKwyAMhUsRf3iUeYzueDt0J0x4hKR5RgcdCwQsqZ95aYjNadvyQkcryV+P2ApeVvbVFONJzQXqsIrnrX+BJ/vi2/l1JrKtNcNbZTM8S9Nsfsj9Bx5y78ST+yxem1V14gzJxOdRtqe3x2vi2B4P5ytTa++dBzmnojzPorw+D4vyHdlvovUAe68zuV+db/VDlGflOcrzdM/wrHiUtwuvyjnevanl13quBPXL2r3IemI/oEf6UpsRrFuarvRGYnfkMf9Ybc/x9ufHZWy0ts1OOosOcg==
+   eJzlluEKAyEIx48j+tCjrMe4Pd4eegsWiGj+MweNE4Qu6ZeWp+V0HHkzPYnegadJSfZ4JJwdwcvCuprieH0u0r/R+B94fQ2/z1/5J+2njRFelKzwtJhW/aPcO/Aodyee9m/w+Var6sIenEm/Z9lWvN1eE8ZG+gnaexDeQ6lTUTxLvLxeD4twj+idSDkw0+O9uT7KBy9P83OWZ8W9wtPsXt7JtAr7WH1T8q/lXHHGz8/uBZ4nzQeqnryUagSqWkyjeD22HXnIG6utuT76/Cq3zZ5tkzdZnBFu
   </data>
  </layer>
- <layer name="collisions" width="20" height="40">
+ <layer name="collisions" width="20" height="44">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJztwQENAAAAwqD3T20ON6AAAAB4MA3AAAE=
   </data>
  </layer>
- <objectgroup name="spawns" width="20" height="40">
-  <object name="warpB" x="103" y="1269" width="80" height="20">
+ <objectgroup name="spawns" width="20" height="44">
+  <object name="warpB" x="103" y="1397" width="80" height="20">
    <properties>
     <property name="warp" value="hubupgate_A"/>
    </properties>
   </object>
-  <object name="A" x="35" y="1226" width="32" height="32">
+  <object name="A" x="35" y="1354" width="32" height="32">
    <properties>
     <property name="destination" value="A"/>
    </properties>
   </object>
-  <object name="warpA" x="-8" y="1165" width="27" height="68">
+  <object name="warpA" x="-8" y="1293" width="27" height="68">
    <properties>
     <property name="warp" value="room2_B"/>
    </properties>
   </object>
-  <object name="B" x="140" y="1236" width="32" height="32">
+  <object name="B" x="140" y="1364" width="32" height="32">
    <properties>
     <property name="destination" value="B"/>
    </properties>
   </object>
-  <object name="R1" x="416" y="1184" width="32" height="32">
+  <object name="R1" x="416" y="1312" width="32" height="32">
    <properties>
     <property name="destination" value="R1"/>
    </properties>
   </object>
-  <object name="warpR1" x="455" y="1271" width="182" height="24">
+  <object name="warpR1" x="455" y="1399" width="182" height="24">
    <properties>
     <property name="warp" value="hubupgate_TR"/>
    </properties>
   </object>
-  <object name="playerspawn" x="320" y="1152" width="32" height="32"/>
+  <object name="playerspawn" x="320" y="1280" width="32" height="32"/>
  </objectgroup>
 </map>
