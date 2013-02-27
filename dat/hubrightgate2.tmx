@@ -32,6 +32,6 @@
     <property name="destination" value="L"/>
    </properties>
   </object>
-  <object name="playerspawn" x="96" y="128" width="30" height="20"/>
+  <object name="playerspawn1" x="96" y="128" width="30" height="20"/>
  </objectgroup>
 </map>
