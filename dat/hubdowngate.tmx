@@ -28,5 +28,15 @@
     <property name="destination" value="T"/>
    </properties>
   </object>
+  <object name="warpT" x="-6" y="32" width="10" height="126">
+   <properties>
+    <property name="warp" value="hubdowngate2_R"/>
+   </properties>
+  </object>
+  <object x="26" y="109" width="13" height="15">
+   <properties>
+    <property name="destination" value="L"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

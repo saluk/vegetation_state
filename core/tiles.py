@@ -106,9 +106,9 @@ class Tile(Agent):
                 print "free spot has spikes"
                 return
             
-            if ground and top:
-                print "attached above and below"
-                return
+            #~ if ground and top:
+                #~ print "attached above and below"
+                #~ return
             if ground and hasattr(ground,"vines") and ground.vines!="horiz":
                 print "our ground is vines"
                 return
