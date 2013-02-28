@@ -333,6 +333,7 @@ class Player(Agent):
                 if hasattr(col,"key") and not self.has_key:
                     self.has_key = col.key
                     col.erase()
+                    self.world.checkpoint(self)
                 if hasattr(col,"door") and self.has_key==col.door:
                     self.has_key = ""
                     col.erase()

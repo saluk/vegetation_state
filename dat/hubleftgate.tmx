@@ -33,7 +33,6 @@
     <property name="warp" value="hubleftgate2_R"/>
    </properties>
   </object>
-  <object name="playerspawn1" x="568" y="293" width="25" height="35"/>
   <object name="warpR" x="626" y="266" width="21" height="75">
    <properties>
     <property name="warp" value="hub_L"/>

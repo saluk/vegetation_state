@@ -13,7 +13,7 @@
  </layer>
  <layer name="tileobs" width="20" height="35">
   <data encoding="base64" compression="zlib">
-   eJztlGEKwjAMhYfE/Og1xD/1GO6XZ/Emu7QU9yA+k26dZTDwwaOsab4mNExlGLSzxRgSaffZ4XhK8r0mJ+e6wIGyfK6FlX/gcS3Z8NTEIp7NR2+8BxbzRmOVNt5J3kZe4V1MjHk635PMneh3nFnPgBf1i/worh146uS08NbK40Wz2srDW0WzuoXXWp89h3mz/aK+LTy88138/VvF9lwPL/G4du7XfkdvVc5MHXioKVd4rHwgHmsvXk2W96Ac/PszzUttftnMw7p2PqOZtbzkxFhTEDsSL+3Ai5h/3nre0twyL/ILQvogag==
+   eJztlFEKwjAQREXWfOQa4k88hv3yLN6kl5ZiB8ZxN21qEIQODKHZ7MsuWZrscEidbWTIrN0nh+Mp2+eanZzLAgcq9r5OrPIFT2spxEsUi3icj950DyzlDeRkbbyjvYy8iXemmPLSfE+mO9HvMLMeAS/qF/lRPHXgJSenhbdWHi+a1VYe3iqa1S281vr4HOaN+0V9W3h455v5+9eK+VwPL/G0du2Xv6O3ms6MHXioqVR4qvJHPNWveDUx7y45+PcXmZfa/KqVh3XtfEYzy7zsxFRjEOOcvPNC5s5bz1uaW+VFfgKo6yAq
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="35">
@@ -32,6 +32,15 @@
     <property name="destination" value="L"/>
    </properties>
   </object>
-  <object name="playerspawn1" x="96" y="128" width="30" height="20"/>
+  <object name="warpsg" x="630" y="545" width="21" height="186">
+   <properties>
+    <property name="warp" value="shootgrow_A"/>
+   </properties>
+  </object>
+  <object name="warpss" x="259" y="1101" width="149" height="14">
+   <properties>
+    <property name="warp" value="shootspread_A"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

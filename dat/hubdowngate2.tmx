@@ -28,6 +28,15 @@
     <property name="destination" value="R"/>
    </properties>
   </object>
-  <object name="playerspawn1" x="542" y="89" width="22" height="24"/>
+  <object name="warpps" x="630" y="613" width="16" height="55">
+   <properties>
+    <property name="warp" value="pushspread_A"/>
+   </properties>
+  </object>
+  <object name="warpss" x="-14" y="608" width="23" height="59">
+   <properties>
+    <property name="warp" value="shootspread_A"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

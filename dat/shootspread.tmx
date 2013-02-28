@@ -4,17 +4,12 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjZmFgYCGAWYGYmUh1ykDMRACrkqCOmQh1tLCXmuqIxa5UME+Vyu4jxzyQOhcc2JVM84h1qzMeu7G5gZ7xO9jNYyLSPBck2oWAWmcCagjFFXq8AQB4+hQ7
-  </data>
- </layer>
- <layer name="wall1" width="20" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhAQAEsAAB
+   eJxjZmFgYCGAWYGYmUh1ykDMRCWsCrWXmuZR233UNM91kLtvKJjnPMjdN5jNY6KBeaD4cKESBuUPAC9mD6c=
   </data>
  </layer>
  <layer name="tileobs" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9ADdLCPLPHJBzyBxx1ACOVQKs2yoOWx4zPMiwa5sJLXaLNgxqQAAdKEE/g==
+   eJxjYCAMWFggmBTAxYJKk6tHmQW3HCGghUcPsnlaSJha5pHjPlUkfdQwD5/7kM2EsZFpZDX4zEPWh8xH1o9OE2MePv343KdMZFiRArxYsGNS9VAbwNILtcxGNo8aWJUGfgYAGkgQzQ==
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
@@ -23,13 +18,7 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="playerspawn" x="69" y="209" width="32" height="32"/>
-  <object name="warpA" x="628" y="384" width="32" height="60">
-   <properties>
-    <property name="warp" value="room2_A"/>
-   </properties>
-  </object>
-  <object name="A" x="608" y="426">
+  <object name="A" x="325" y="387">
    <properties>
     <property name="destination" value="A"/>
    </properties>

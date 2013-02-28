@@ -4,12 +4,12 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="44">
   <data encoding="base64" compression="zlib">
-   eJztzLEJAEAIwEAR+f1H/iFEsbjAtYlQpywAgDnv+A/Y9QF8+xLJ
+   eJztzLEJAAAIAzAp4v8n+4U4ZMiadFUAAHhpnn/ArQUc8hSp
   </data>
  </layer>
  <layer name="tileobs" width="20" height="44">
   <data encoding="base64" compression="zlib">
-   eJzlluEKAyEIx48j+tCjrMe4Pd4eegsWiGj+MweNE4Qu6ZeWp+V0HHkzPYnegadJSfZ4JJwdwcvCuprieH0u0r/R+B94fQ2/z1/5J+2njRFelKzwtJhW/aPcO/Aodyee9m/w+Var6sIenEm/Z9lWvN1eE8ZG+gnaexDeQ6lTUTxLvLxeD4twj+idSDkw0+O9uT7KBy9P83OWZ8W9wtPsXt7JtAr7WH1T8q/lXHHGz8/uBZ4nzQeqnryUagSqWkyjeD22HXnIG6utuT76/Cq3zZ5tkzdZnBFu
+   eJzllm8KxSAIwMeIPnSU1zH2brOrvENvQYKIplmDHhOEVuvnn5wthm2Li+le9XwJD+SsTJBkGLckPsCLzL4c5vFgbqZ/rfE/8GBPZOaf8I+zJ40tvFkywpNiGvUPc9/Aw9yVeNK3QedLr8oDNigTP/eytXhhPQcbW+Ph/mrJtfbOR+hTs3iaeHnQDxNzjtYz4WrAcsdbfW/Zl+rBy5P87OVpcY/wpHUvbyeaGTvavcn5V2ouOeOnufsZ84nrAaunLrkeYVUppla8nrUVeZZ/rLLnuPVbla715rbIBd25E/Y=
   </data>
  </layer>
  <layer name="collisions" width="20" height="44">
@@ -48,6 +48,15 @@
     <property name="warp" value="hubupgate_TR"/>
    </properties>
   </object>
-  <object name="playerspawn1" x="320" y="1280" width="32" height="32"/>
+  <object name="warppg" x="631" y="36" width="17" height="117">
+   <properties>
+    <property name="warp" value="pushgrow_A"/>
+   </properties>
+  </object>
+  <object name="warpsg" x="-12" y="162" width="21" height="56">
+   <properties>
+    <property name="warp" value="shootgrow_A"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

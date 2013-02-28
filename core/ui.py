@@ -127,7 +127,7 @@ class Textbox(Agent):
         for s in self.subjects:
             s.speaking_anim = True
             break
-        self.pos = [0,175]
+        self.pos = [0,270]
         y = self.pos[1]+4
         for t in self.lines:
             t.pos = [self.pos[0]+4,y]
@@ -136,7 +136,7 @@ class Textbox(Agent):
             self.said = self.to_say[:len(self.said)+1]
             self.text.set_text(self.said)
             self.text.render(world.engine)
-            if self.text.surface.get_width()>314:
+            if self.text.surface.get_width()>460:
                 words = self.said.split(" ")
                 self.text.set_text(" ".join(words[:-1]))
                 self.text = self.lines[self.lines.index(self.text)+1]
@@ -149,7 +149,7 @@ class Textbox(Agent):
                 s.speaking_offset = [0,0]
             self.finished = True
     def draw(self,engine,offset=[0,0]):
-        r = pygame.Rect([self.pos[0]+1,self.pos[1]+1],[317,60])
+        r = pygame.Rect([self.pos[0]+1,self.pos[1]+1],[477,60])
         color = [255,255,255]
         pygame.draw.rect(engine.surface,[50,50,50],r)
         pygame.draw.rect(engine.surface,color,r,2)
@@ -159,7 +159,7 @@ class Textbox(Agent):
         if self.do_next:
             self.do_next[0](*self.do_next[1])
     def rect(self):
-        return pygame.Rect([self.pos,[320,60]])
+        return pygame.Rect([self.pos,[477,60]])
     def click(self,world,controller):
         self.end(world)
     def end(self,world):

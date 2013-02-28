@@ -4,12 +4,12 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="55" height="54">
   <data encoding="base64" compression="zlib">
-   eJztmOsKgzAMhWWI7//IY/+GJM3ttE1KAkXmtPbLyaV6XXnsubEjk/3W8wGNZltnzdZszbbOtGz/df5ENom5IttIr+euqZsUh+//qrBJuUXFaSU2a5yewMZpWoHNkmPV2KSaX72/nc7Gxevo+kxm7V8n6Pbm0fa7TNbvAc3WbOus2c5go74Va7kqsJ2sW5QtyzcUal8VYUOOrGyjc9y96Py11IsRz4hNE/Mz3uOt9VDLyZ17P0/SGsUW5ePYqN/UkeKOskX10uhmYULmG4qN4/POETXPOkb3IOIb1RM9fUejWRa2GfEY0W9nTFpzzVOLq7BF5oowZmWj9F7JZq01njmlZ3nrnofDy4bWPLIWy3xIH2dj2zWardmysc3w1cz6sJtHqoU7aiaCkdsfWPYY3j5t8ZPVn4j9LdLQPvoCELQtwQ==
+   eJzt2tsKgCAQRdGI8P8/OXosJm8Nth3PAV+SwMWIlrVtnKTDt5FyjWd3bKTIJpts4yLbfZ2PaCuZZ9zfcvV6XiclZyvNQ6uPlJZxP2tl9ZNSO9dk+1tzjzW+mrX+zUxKT91k+z+ez1xEm5ePaItcN9lkI0U22eg266y41jWDLXLdItmSbNPbejwJbvPYC8i2rz6i7Wu9VrDtAWy5e0jp+V6/4pyUbVxkW89mrTOktL57ltZMUrR3yybbuES2eboi2qj7m2fNaLbSPzItZw5Um1c7AbcNHHU=
   </data>
  </layer>
  <layer name="tileobs" width="55" height="54">
   <data encoding="base64" compression="zlib">
-   eJzt18kNgCAURVEWrCxFO7EV7USLNsSFSsCB8GW6JyEsNMrLRwSlAABAThadegRyyFYmspWp5myoy8pczdJMXQAAjRn59wFZ6PXRnu6TMgg92x6zL4NkNql32DWz6/i2rjHEXs99dfP1JXHVye7/qtsbUt+mBDPWc7u7dpeL/QmAEJ2+NiA15iHwXa37wKnSXAbZdi2s+a4zXUnn1VAbvzoPiQ==
+   eJzt2VsKgzAQhWEfBh9ciu4ka+lO3HQVKWqxIV6gmTP/B0EhPngwGRNtGnjQ23o+2u/rPIqSra0wW7Kllfi+/9qznREpW2lfrXLjVem5RdSZ3jvgg2w+zdlUa4m3bKVrFa/azfN4TcdBMG+yNaensYe4lOoOcw54nvK8Us5WQqn+A7hHcV8WCfVcl6e5Odi+5fpyuRjPAK6Y/wFsG/BvjEPgPNV1oPL3R7Itjmp+EvtPfLSn87RfveoNeZ8MeA==
   </data>
  </layer>
  <layer name="COLLISIONS" width="55" height="54">
@@ -26,6 +26,16 @@
   <object name="warpR" x="1756" y="1388" width="7" height="197">
    <properties>
     <property name="warp" value="hubleftgate_L"/>
+   </properties>
+  </object>
+  <object name="warpps" x="1752" y="35" width="17" height="55">
+   <properties>
+    <property name="warp" value="pushspread_A"/>
+   </properties>
+  </object>
+  <object name="warpss" x="1751" y="295" width="17" height="82">
+   <properties>
+    <property name="warp" value="shootspread_A"/>
    </properties>
   </object>
  </objectgroup>

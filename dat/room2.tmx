@@ -4,7 +4,7 @@
  <tileset firstgid="1025" source="tiles.tsx"/>
  <layer name="floor1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJytktEKgDAIRccYth+J6Dsqqv//odnDQESXOB8Og4scvLJcUsoCQKCZNDsCHFhd1kzqYdnhL+N38XaLvBFlDfIsSDX4rH9iC/Jovt3hoNzIQ/rO+ni/7isMUF5prru/Pd/J/SKoSn4g5wBgL88pF9IASA4Pfg==
+   eJxjYmFgYBrFo3iYYDYg1hxB5nkAsecgCHdc2BmIXfBgNjQaXRwZuwIxAJHSDIU=
   </data>
  </layer>
  <layer name="wall1" width="20" height="15">
@@ -14,7 +14,7 @@
  </layer>
  <layer name="tileobs1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9AZcLIPbPK1R83ACbhYIRubDzNCGspHjg9pxQwrgYcFOUwJg/uUeIH8BAAM1Ack=
+   eJxjY2FgYKMyRgZcaHxiQDeSnlHzUPk9RJhPSnwQE4eUxC82eUrM0yJgHjH2jxTzsOmltnno7tfCE7fUAAAj4Adx
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="15">
@@ -33,12 +33,12 @@
     <property name="destination" value="A"/>
    </properties>
   </object>
-  <object name="warpB" x="624" y="369" width="27" height="68">
+  <object name="warpB" x="627" y="40" width="26" height="111">
    <properties>
     <property name="warp" value="room3_A"/>
    </properties>
   </object>
-  <object name="B" x="594" y="423" width="32" height="32">
+  <object name="B" x="564" y="123" width="32" height="32">
    <properties>
     <property name="destination" value="B"/>
    </properties>
