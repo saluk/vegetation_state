@@ -32,7 +32,7 @@ class Tile(Agent):
         self.col = None    #full,top,bottom,left,right,trigger
         self.index = -1
         self.layer = None
-        self.save = ["pos","col","index","vines","spikes"]
+        self.save = ["pos","col","index","vines","spikes","key","door","losepower"]
     def rect(self):
         return pygame.Rect([self.pos,[32,32]])
     def serialized(self):
@@ -317,6 +317,8 @@ class TileMap(Agent):
         s = f.read()
         f.close()
         d = json.loads(s)
+        self.unserialize(d)
+    def unserialize(self,d):
         self.mapfile = d["mapfile"]
         self.raw_tilesets = []
         self.tileset_list = [None]
@@ -340,12 +342,18 @@ class TileMap(Agent):
         self.paths = d["paths"]
         self.npc_spawns = d["npc_spawns"]
         self.map = []
+        numlayers = 0
         for layer in d["map"]:
+            numlayers+=1
             self.map.append(TileLayer.unserialize(layer,self))
+        print self.mapfile
+        print "numlayers",numlayers
             
         if d.get("boundary",None):
             self.boundary = convrect(d["boundary"])
         
+        self.mapname = d["mapname"]
+        self.name = d["name"]
         self.setup()
     def saveetm(self):
         import json
@@ -382,6 +390,9 @@ class TileMap(Agent):
         d["map"] = []
         for layer in self.map:
             d["map"].append(layer.serialized())
+            
+        d["mapname"] = self.mapname
+        d["name"] = self.name
         return d
     def add_tileset(self,source,props):
         self.raw_tilesets.append({"source":os.path.split(source)[1],"props":props})
@@ -501,7 +512,6 @@ class TileMap(Agent):
     def setup(self):
         self.world.objects.extend(self.frobers)
         self.collisions = self.map[-1].tiles
-        del self.map[-1]
         self.map_width = len(self.map[0].tiles[0])
         self.map_height = len(self.map[0].tiles)
         self.build_astar_graph()

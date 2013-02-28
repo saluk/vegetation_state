@@ -18,7 +18,7 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="warpA" x="97" y="-12" width="95" height="23">
+  <object name="warpUL" x="97" y="-12" width="95" height="23">
    <properties>
     <property name="warp" value="room3_B"/>
    </properties>
@@ -28,7 +28,7 @@
     <property name="destination" value="A"/>
    </properties>
   </object>
-  <object name="warpL" x="66" y="467" width="56" height="23">
+  <object name="warpLL" x="66" y="467" width="56" height="23">
    <properties>
     <property name="warp" value="hub_TL"/>
    </properties>
@@ -48,24 +48,14 @@
     <property name="destination" value="TR"/>
    </properties>
   </object>
-  <object name="warpR" x="419" y="471" width="116" height="28">
+  <object name="warpLR" x="419" y="471" width="116" height="28">
    <properties>
     <property name="warp" value="hub_TR"/>
    </properties>
   </object>
-  <object name="warpTR" x="440" y="-23" width="198" height="28">
+  <object name="warpUR" x="440" y="-23" width="198" height="28">
    <properties>
     <property name="warp" value="room3_R1"/>
-   </properties>
-  </object>
-  <object name="warpTL" x="172" y="-129" width="198" height="28">
-   <properties>
-    <property name="warp" value="room3_R2"/>
-   </properties>
-  </object>
-  <object name="TL" x="215" y="-87" width="13" height="13">
-   <properties>
-    <property name="destination" value="TL"/>
    </properties>
   </object>
  </objectgroup>

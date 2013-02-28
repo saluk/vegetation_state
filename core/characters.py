@@ -157,6 +157,13 @@ class Player(Agent):
         
         self.powers = ["shoot","grow","spread","push"]
         self.col = "full"
+        
+        self.room_history = {}
+        self.invincible = 0
+    def unserialize(self,d):
+        self.__dict__.update(d)
+    def serialized(self):
+        return {"pos":self.pos,"room_history":self.room_history,"powers":self.powers,"has_key":self.has_key,"mapname":self.mapname}
     def power(self,name):
         if name in self.powers:
             getattr(self,"power_"+name)()
@@ -164,6 +171,9 @@ class Player(Agent):
         if name in self.powers:
             self.powers.remove(name)
     def start_death(self):
+        if self.invincible:
+            return
+        print "death"
         self.world.remove(self)
         nt = FallingTiles()
         nt.pos = self.pos
@@ -174,6 +184,7 @@ class Player(Agent):
         self.world.add(nt)
     def on_kill(self):
         """What to do when deleted from world"""
+        print "player killed"
         self.world.do_restart = True
     def click(self,world,controller):
         if self.name=="erik":
@@ -490,6 +501,8 @@ class Player(Agent):
         self.particles.pos = self.pos[:]
         self.particles.update(world)
         
+        if self.invincible:
+            self.invincible -= 1
         
     def collide(self,agent,flags=None):
         return self.collide_point(agent.pos,flags)

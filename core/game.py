@@ -89,7 +89,8 @@ class GameWorld(World):
         p.pos = pos
         p.map.add_entity(p)
         p.load(sprite)
-        getattr(p,direction)()
+        if direction:
+            getattr(p,direction)()
         p.idle()
         self.add(p)
         return p
@@ -97,13 +98,58 @@ class GameWorld(World):
         for e in self.events:
             getattr(self,e["func"])(*e.get("args",[]),**e.get("kwargs",{}))
         self.events = []
+    def checkpoint(self,character):
+        save = {}
+        maps = {}
+        for m in self.maps:
+            maps[m] = self.maps[m].serialized()
+        player = character.serialized()
+        save["maps"] = maps
+        save["player"] = player
+        import json
+        f = open("saves/checkpoint.d","wb")
+        f.write(json.dumps(save))
+        f.close()
+    def load_checkpoint(self):
+        print "load checkpoint!"
+        self.objects[:] = []
+        import json
+        f = open("saves/checkpoint.d","rb")
+        save = json.loads(f.read())
+        f.close()
+        self.maps = {}
+        for m in save["maps"]:
+            self.maps[m] = TileMap()
+            self.add(self.maps[m])
+            self.maps[m].unserialize(save["maps"][m])
+            
+        self.player = self.add_character(mapname="room1",sprite="art/sprites/stickman.png",pos=[0,0],direction=None)
+        self.player.invincible = 260
+        self.player.name = "stickman"
+        self.player.assign_ai(active=False)
+        self.player.walk_speed = 1.5
+        
+        self.player.unserialize(save["player"])
+        self.player.map = self.maps[self.player.mapname]
+        
+        self.camera_focus = self.player
+        
+        self.player.menu = Radial()
+        self.player.menu.layer = 10
+        self.player.menu.pos = self.player.pos
+        self.add(self.player.menu)
+
+        self.map = self.player.map
+        self.map_music()
     def change_map(self,character,map,target,direction=None):
+        print "changing map!"
         if map not in self.maps:
             print "NO MAP"
             return
         if target not in self.maps[map].warps and target not in self.maps[map].destinations:
             print "NO 'DESTINATION'"
             return
+        
         character.following_points = []
         #~ if direction=="none":
             #~ target = self.maps[map].destinations[target]
@@ -131,6 +177,10 @@ class GameWorld(World):
         if character == self.camera_focus:
             self.map = self.maps[map]
             self.map_music()
+            
+        if map not in character.room_history:
+            character.room_history[map] = 1
+            self.checkpoint(character)
     def map_music(self):
         song = songs.get(self.map.name,songs["default"])
         if song:
@@ -188,6 +238,7 @@ class GameWorld(World):
             if col:
                 return col
     def restart(self):
+        print "restarting!"
         import game
         import world
         import tiles
@@ -197,6 +248,9 @@ class GameWorld(World):
         reload(characters)
         reload(game)
         self.engine.world = game.make_world(self.engine)
+        import os
+        if "checkpoint.d" in os.listdir("saves"):
+            self.engine.world.load_checkpoint()
     def input(self,controller):
         if controller.restart:
             return self.restart()

@@ -18,14 +18,9 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="15">
-  <object name="R" x="579" y="320" width="20" height="20">
+  <object name="R" x="575" y="318" width="20" height="20">
    <properties>
     <property name="destination" value="R"/>
-   </properties>
-  </object>
-  <object x="629" y="265" width="21" height="75">
-   <properties>
-    <property name="warp" value="hub_L"/>
    </properties>
   </object>
   <object name="L" x="39" y="315" width="20" height="20">
@@ -33,9 +28,15 @@
     <property name="destination" value="L"/>
    </properties>
   </object>
-  <object x="-14" y="265" width="21" height="75">
+  <object name="warpL" x="-14" y="265" width="21" height="75">
    <properties>
     <property name="warp" value="hubleftgate2_R"/>
+   </properties>
+  </object>
+  <object name="playerspawn1" x="568" y="293" width="25" height="35"/>
+  <object name="warpR" x="626" y="266" width="21" height="75">
+   <properties>
+    <property name="warp" value="hub_L"/>
    </properties>
   </object>
  </objectgroup>

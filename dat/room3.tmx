@@ -18,7 +18,7 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="20" height="44">
-  <object name="warpB" x="103" y="1397" width="80" height="20">
+  <object name="warpLL" x="103" y="1397" width="80" height="20">
    <properties>
     <property name="warp" value="hubupgate_A"/>
    </properties>
@@ -43,7 +43,7 @@
     <property name="destination" value="R1"/>
    </properties>
   </object>
-  <object name="warpR1" x="455" y="1399" width="182" height="24">
+  <object name="warpLR" x="455" y="1399" width="182" height="24">
    <properties>
     <property name="warp" value="hubupgate_TR"/>
    </properties>
