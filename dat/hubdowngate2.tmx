@@ -9,7 +9,7 @@
  </layer>
  <layer name="tileobs" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJy1llEKgCAQRP0QPzyK3cSzdeiIEpbackbHgSWK6bku62KKIaQFoZKSZXmqfC1PIZTz52P3VkEfUysVbyP2gfhsXSroVQldl+XtYp5KSt6q2dJ4JV699ozRHJG52PO093yHtx6al33O8p46WcWZgwwvm/+/eIxsPS1vRkz/ITO1x2N7sMdjz4/1e/3CyuvzGt/f0fnY/N65HYkV96ADagcNnQ==
+   eJy1ltEJwCAMRP0QPxzFbuIqXaVD96MGQgn1zp4HQQrHM6YxWHJKZUOopGR5nipfz1MI5Xz52LN10MfUSsU7iHMgPl+XDnpVQvdleZeYp5KSt2u2GK/lp9fesZojMhdnHvuuI6L90LxsPQU80+l4LZiDDK8OVvngMfL19Lw/YvoPmakzHtuDMx57f7w/6hdWUZ9bnbr73+h8NE50b1dixzvoBgplD5M=
   </data>
  </layer>
  <layer name="COLLISIONS" width="20" height="30">
@@ -28,6 +28,6 @@
     <property name="destination" value="R"/>
    </properties>
   </object>
-  <object name="playerspawn" x="341" y="684" width="22" height="24"/>
+  <object name="playerspawn1" x="542" y="89" width="22" height="24"/>
  </objectgroup>
 </map>

@@ -549,7 +549,7 @@ class Player(Agent):
         self.water = WaterDrop()
         self.water.parent = self
         self.water.mapname = self.mapname
-        self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]
+        self.water.pos = [self.pos[0]+self.facing[0]*48,self.pos[1]]
         self.world.add(self.water)
         
     def power_spread(self):
@@ -558,6 +558,6 @@ class Player(Agent):
         self.water = HorizWaterDrop()
         self.water.parent = self
         self.water.mapname = self.mapname
-        self.water.pos = [self.pos[0]+self.facing[0]*32,self.pos[1]]
+        self.water.pos = [self.pos[0]+self.facing[0]*48,self.pos[1]]
         self.world.add(self.water)
         
