@@ -115,6 +115,16 @@ class HorizWaterDrop(Agent):
     def draw(self,engine,offset):
         p = [int(self.pos[0]-offset[0]),int(self.pos[1]-offset[1])]
         pygame.draw.circle(engine.surface,[0,100,0],p,10)
+        
+class Powers(Agent):
+    def draw(self,engine,offset):
+        x=400;y=240
+        for p in "[x]shoot,[c]grow,[v]push,[a]spread".split(","):
+            t = engine.font.render(p,1,[200,10,10])
+            if p[3:] not in self.parent.powers:
+                pygame.draw.line(t,[0,0,0],[0,t.get_height()//2],[t.get_width(),t.get_height()//2])
+            engine.surface.blit(t,[x,y])
+            y+=10
 
 class Player(Agent):
     def init(self):
@@ -156,6 +166,8 @@ class Player(Agent):
         self.topics = set([])
         
         self.powers = ["shoot","grow","spread","push"]
+        self.powerui = Powers()
+        self.powerui.parent = self
         self.col = "full"
         
         self.room_history = {}

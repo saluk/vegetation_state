@@ -82,6 +82,7 @@ class GameWorld(World):
         self.player.menu.layer = 10
         self.player.menu.pos = self.player.pos
         self.add(self.player.menu)
+        self.add(self.player.powerui)
         self.player.say_many(["VEGETATION STATE One Game a Month (z to continue)","<- -> to move; z - jump; r - restart at checkpoint","powers: x - shoot; v - push; c - vertical growth; a - horizontal growth","you WILL lose these powers as you progress"],self.player)
     def add_character(self,mapname,sprite,pos,direction):
         p = Player()
@@ -142,6 +143,7 @@ class GameWorld(World):
         self.player.menu.layer = 10
         self.player.menu.pos = self.player.pos
         self.add(self.player.menu)
+        self.add(self.player.powerui)
 
         self.map = self.player.map
         self.map_music()
