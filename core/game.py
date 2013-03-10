@@ -11,6 +11,7 @@ from agents import Text,Agent
 import quest
 
 import json
+import threading
 
 songs = {"default":"Roger_Subirana_Mata_-_Nysfan"}
 
@@ -99,6 +100,9 @@ class GameWorld(World):
             getattr(self,e["func"])(*e.get("args",[]),**e.get("kwargs",{}))
         self.events = []
     def checkpoint(self,character):
+        t = threading.Thread(target=self._checkpoint,args=(character,))
+        t.start()
+    def _checkpoint(self,character):
         save = {}
         maps = {}
         for m in self.maps:
